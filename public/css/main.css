@@ -8,9 +8,10 @@
 }
 body{
     font-family: "Mali", cursive;
-    background: var(--mainDark);
-    color:var(--mainDark);
+    background: var(--mainWhite)!important;
+    color:var(--mainWhite);
 }
 .navbar{
-    background: var(--mainDark)!important;
+    background: var(--mainDark);
+        
 }
