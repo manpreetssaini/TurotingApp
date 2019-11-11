@@ -1,3 +1,16 @@
+@import url("https://fonts.googleapis.com/css?family=Caveat |Mali");
+
+:root {
+    --mainDark: #242325;
+    --mainGreen: #61e786;
+    --mainWhite: #fff;
+    --mainGrey: #eeeeee;
+}
 body{
-    background: black;
+    font-family: "Mali", cursive;
+    background: var(--mainDark);
+    color:var(--mainDark);
+}
+.navbar{
+    background: var(--mainDark)!important;
 }
