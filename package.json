@@ -1,0 +1,33 @@
+{
+  "name": "turotingapp",
+  "version": "1.0.0",
+  "description": "fs1050",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app",
+    "dev": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manpreetssaini/TurotingApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manpreetssaini/TurotingApp/issues"
+  },
+  "homepage": "https://github.com/manpreetssaini/TurotingApp#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.6-alpha.6",
+    "express-session": "^1.17.0",
+    "mysql": "^2.17.1",
+    "path": "^0.12.7",
+    "session": "^0.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  }
+}
