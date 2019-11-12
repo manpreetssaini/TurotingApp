@@ -26,9 +26,23 @@ body{
 .green__btn{
     color: var(--mainGreen);
     border: 0.1rem solid var(--mainGreen);
+    background: transparent;
+}
+.green__btn:hover{
+    background:var(--mainGreen);
+    color: var(--mainWhite);
+}
+/* end of global */
+
+/* navbar */
+.navbar{
+    background: var(--mainDark);        
 }
 
-.navbar{
-    background: var(--mainDark);   
-      
+.phone-icon{
+    color: var(--mainGreen);
+    border: 0.1rem solid var(--mainGreen);
+    padding: 0.5rem;
+    border-radius:50%;
 }
+
