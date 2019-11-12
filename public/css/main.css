@@ -8,10 +8,27 @@
 }
 body{
     font-family: "Mali", cursive;
-    background: var(--mainWhite)!important;
-    color:var(--mainWhite);
+    background: var(--mainDark)!important;
+    color:var(--mainWhite)!important;
 }
+
+/* global */
+
+.text-green{
+    color:var(--mainGreen);
+}
+
+.text-slant{
+    font-family: "Caveat", cursive;
+}
+
+/* Navbar 1rem = 16px */
+.green__btn{
+    color: var(--mainGreen);
+    border: 0.1rem solid var(--mainGreen);
+}
+
 .navbar{
-    background: var(--mainDark);
-        
+    background: var(--mainDark);   
+      
 }
