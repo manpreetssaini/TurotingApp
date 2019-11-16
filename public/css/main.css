@@ -1,48 +1,130 @@
 @import url("https://fonts.googleapis.com/css?family=Caveat |Mali");
 
 :root {
-    --mainDark: #242325;
-    --mainGreen: #61e786;
-    --mainWhite: #fff;
-    --mainGrey: #eeeeee;
+  --mainDark: #242325;
+  --mainGreen: #61e786;
+  --mainWhite: #fff;
+  --mainGrey: #eeeeee;
 }
-body{
-    font-family: "Mali", cursive;
-    background: var(--mainDark)!important;
-    color:var(--mainWhite)!important;
+body {
+  font-family: "Mali", cursive;
+  background: var(--mainDark) !important;
+  color: var(--mainWhite) !important;
 }
 
 /* global */
 
-.text-green{
-    color:var(--mainGreen);
+.text-green {
+  color: var(--mainGreen);
 }
 
-.text-slant{
-    font-family: "Caveat", cursive;
+.text-slant {
+  font-family: "Caveat", cursive;
 }
 
 /* Navbar 1rem = 16px */
-.green__btn{
-    color: var(--mainGreen);
-    border: 0.1rem solid var(--mainGreen);
-    background: transparent;
+.green__btn {
+  color: var(--mainGreen);
+  border: 0.1rem solid var(--mainGreen);
+  background: transparent;
 }
-.green__btn:hover{
-    background:var(--mainGreen);
-    color: var(--mainWhite);
+.green__btn:hover {
+  background: var(--mainGreen);
+  color: var(--mainWhite);
 }
 /* end of global */
 
 /* navbar */
-.navbar{
-    background: var(--mainDark);        
+.navbar {
+  background: var(--mainDark);
 }
 
-.phone-icon{
-    color: var(--mainGreen);
-    border: 0.1rem solid var(--mainGreen);
-    padding: 0.5rem;
-    border-radius:50%;
+.phone-icon {
+  color: var(--mainGreen);
+  border: 0.1rem solid var(--mainGreen);
+  padding: 0.5rem;
+  border-radius: 50%;
 }
 
+.container {
+  margin-top: 2rem;
+}
+
+.card {
+  width: 25%;
+  height: 25%;
+  margin: 2rem;
+}
+
+.container {
+  display: grid | inline-grid;
+}
+
+#resultsPages {
+  vertical-align: bottom;
+}
+
+form {
+  margin: 1rem;
+}
+
+#homeProfilePic {
+  border-radius: 50%;
+  width: 40%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profileInfo {
+  float: left;
+}
+
+.profileHeading {
+  font-size: 1.5rem;
+}
+
+td {
+  padding: 10px 15px 10px 0;
+}
+
+table {
+  margin-bottom: 15px;
+}
+
+#lastLogin {
+  text-align: center;
+}
+
+#bookButton {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#upcomingHeading {
+  text-align: center;
+}
+
+#searchbar {
+  width: 100%;
+  height: 50px;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  margin-left: 10%;
+  margin-right: 10%;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr 1fr 9fr;
+  justify-items: center;
+}
+
+.fab {
+  padding-left: 20px;
+  padding-right: 20px;
+}
