@@ -51,9 +51,18 @@ body {
 }
 
 .card {
-  width: 25%;
-  height: 25%;
-  margin: 2rem;
+  width: 8rem;
+  border-radius: 0px;
+  background-color: #242325;
+  padding: 0;
+}
+
+.card:hover {
+  border: 2px solid white;
+}
+
+.profilePic {
+  border-radius: 0px;
 }
 
 .container {
