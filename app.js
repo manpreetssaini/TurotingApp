@@ -9,10 +9,10 @@ const app = express();
 
 const db = mysql.createConnection({
   // Replace with user-appropriate values
-  host: process.env.HOST,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE
+  host: process.env.DATABASE_HOST,
+  user: process.env.DATABASE_USER,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE_NAME
 });
 
 const port = 3000;
