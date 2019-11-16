@@ -15,6 +15,14 @@ const db = mysql.createConnection({
   database: process.env.DATABASE_NAME
 });
 
+db.connect((err) => {
+  if(err) {
+    throw err;
+  }
+  console.log('Connected to database');
+});
+global.db =db;
+
 const port = 3000;
 app.set("port", process.env.port || port);
 app.set("views", __dirname + "/views");
