@@ -20,7 +20,7 @@ const db = mysql.createConnection({
   user: 'root',
   password: 'password',
   database: 'tutors_db',
-  port: 3306
+  insecureAuth: true
 });
 
 db.connect((err) => {
