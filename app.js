@@ -19,7 +19,8 @@ const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: 'password',
-  database: 'tutors_db'
+  database: 'tutors_db',
+  port: 3306
 });
 
 db.connect((err) => {
