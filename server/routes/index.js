@@ -27,5 +27,9 @@ routes.get("/search", (req, res) => {
 routes.get("/home", (req, res) => {
   res.render("home");
 });
+
+routes.post("/register", (req, res) => {
+  res.status(200);
+});
 module.exports = routes;
 // comment

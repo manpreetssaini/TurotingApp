@@ -7,6 +7,7 @@ const path = require("path");
 const fileUpload = require("express-fileupload");
 const defaultErrorHandler = require("./server/middleware/errorHandler");
 const authenticate = require("./server/middleware/authentication");
+const faker = require("faker");
 require("dotenv").config();
 
 const app = express();

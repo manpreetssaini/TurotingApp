@@ -3,16 +3,21 @@
 <div class="container">
   <h1>Sign up</h1>
   <h3>It's easy. And free</h3>
-  <form action="/" method="post">
+  <form id="registerForm" action="/register" method="post">
     <div class="row"  class="row justify-content-between"">
-      <div class="col-lg-12">
+      <div class="col-lg-6">
         <label for="username">Username: </label>
         <input
           type="text"
           id="username"
           name="user_name"
           placeholder="Input username"
+          required
         />
+      </div>
+      <div class="col-lg-6">
+        <label for="email"> Email: </label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required />
       </div>
     </div>
 
@@ -25,7 +30,11 @@
         id="password"
         name="password"
         placeholder="Input password (minimum 8 characters long)"
+        required
+        onkeyup = 'checkPassword()';
+        pattern=".{8,}"
       />
+      <span id="passwordMessage"> </span>
     </div>
 
     <div class="col-lg-6">
@@ -36,6 +45,9 @@
           id="confirmPassword"
           name="confirmPassword"
           placeholder="Input password (minimum 8 characters long)"
+          required
+          pattern=".{8,}"
+          onkeyup = 'checkPassword()';
         />
       </div>
     </div>
@@ -49,6 +61,7 @@
           id="first_name"
           name="first_name"
           placeholder="First Name"
+          required
         />
       </div>
 
@@ -59,6 +72,7 @@
           id="last_name"
           name="last_name"
           placeholder="Last Name"
+          required
         />
       </div>
     </div>
@@ -66,15 +80,25 @@
     <div id="other_form" class="row d-flex justify-content-between">
       <div class="col-lg-4">
         <label for="DOB"> Date of Birth: </label>
-        <input type="date" id="DOB" name="DOB" placeholder="DD/MM/YY" />
+        <input type="date" id="DOB" name="DOB" placeholder="DD/MM/YY" required/>
       </div>
 
-      <div class="col-lg-4">
-        <label for="location">Location: </label>
-        <input type="text" id="location" name="location" placeholder="City" />
-      </div>
 
       <div class="col-lg-4">
+          <label for="location">Location: </label>
+        <select name="location">
+          <option value="Downtown Toronto"> Downtown Toronto </option>
+          <option value="North York"> North York </option>
+          <option value="Scarborough"> Scarborough </option>
+          <option value="Etobicoke"> Etobicoke </option>
+          <option value="Peel Region"> Peel Region </option>
+          <option value="York Region"> York Region </option>
+          <option value="Durham Region"> Durham Region </option>
+        </select>
+      </div>
+
+
+      <!-- <div class="col-lg-4">
         <label for="grade">Grade: </label>
         <input
           type="number"
@@ -83,11 +107,12 @@
           id="grade"
           name="grade"
           placeholder="9-12"
+          required
         />
-      </div>
+      </div> -->
     </div>
 
-    <div>
+    <!-- <div>
       <fieldset>
         <legend>
           Choose your subjects (Check all subjects that you would like tutoring
@@ -190,9 +215,30 @@
       </div>
       </fieldset>
     </div>
-    <button type="button" class="btn btn-primary">Register Now</button>
-  </div>
+    <button type="submit" class="btn btn-primary">Register Now</button>
+  </div> -->
+  <button type="submit" class="btn btn-primary">Register Now</button>
   </form>
 </div>
 
+<script>
+  let password = document.getElementById("password");
+  let confirmPassword = document.getElementById("confirmPassword");
+
+  password.oninvalid = function (event) {
+  event.target.setCustomValidity('Password must be at least 8 characters long');
+  }
+
+  function checkPassword() {
+    console.log(password.value.length)
+    if (password.value !== confirmPassword.value) {
+        document.getElementById("passwordMessage").innerHTML = 'Passwords do not match'
+    } else if (password.value.length === 0 || confirmPassword.value.length === 0 ) {
+      document.getElementById("passwordMessage").innerHTML = " ";
+    } else {
+      document.getElementById("passwordMessage").innerHTML = " ";
+    }
+  }
+
+</script>
 <% include partials/footer.ejs %>

@@ -1,3 +1,6 @@
+CREATE DATABASE tutors_db;
+USE tutors_db;
+
 CREATE TABLE IF NOT EXISTS 	`students` (
 	`student_id` INT NOT NULL AUTO_INCREMENT,
     `first_name` VARCHAR(255) NOT NULL,
@@ -8,7 +11,7 @@ CREATE TABLE IF NOT EXISTS 	`students` (
 	`dob` DATE NOT NULL,
 	`image` varchar(255) NOT NULL,
     `user_name` varchar(20) NOT NULL,
-    `password` varchar(12) NOT NULL,
+    `password` varchar(24) NOT NULL,
     PRIMARY KEY (`student_id`))
     Engine = InnoDB DEFAULT CHARSET= latin1 AUTO_INCREMENT=1;
 
@@ -23,7 +26,7 @@ CREATE TABLE IF NOT EXISTS 	`tutors` (
 	`image` varchar(255) NOT NULL,
     `speciality` varchar(255) NOT NULL,
     `user_name` varchar(20) NOT NULL,
-    `password` varchar(12) NOT NULL,
+    `password` varchar(24) NOT NULL,
     PRIMARY KEY (`tutor_id`))
     Engine = InnoDB DEFAULT CHARSET= latin1 AUTO_INCREMENT=1; 
  

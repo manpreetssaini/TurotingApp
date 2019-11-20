@@ -137,3 +137,7 @@ footer {
   padding-left: 20px;
   padding-right: 20px;
 }
+
+input:valid {
+  border: 5px solid green;
+}
