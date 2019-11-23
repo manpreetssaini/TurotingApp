@@ -1,4 +1,4 @@
-<% include partials/header.ejs %>
+<% include partials/new_header.ejs %>
 
 <div class="container">
   <h1>Sign up</h1>
@@ -79,11 +79,7 @@
       </div>
     </div>
 
-    <div id="other_form" class="row d-flex justify-content-between">
-      <div class="col-lg-4">
-        <label for="DOB"> Date of Birth: </label>
-        <input type="date" id="DOB" name="DOB" placeholder="DD/MM/YY" required/>
-      </div>
+
 
 
       <div class="col-lg-4">
@@ -114,9 +110,15 @@
             <input class="form-check-input" type="checkbox" value="english" name="english">
         </div>
       </div>
+
       <div class="form-check form-check-inline col-lg-6">
           <input name="memberCategory" type="radio" class="form-check-input" id="studentCategory">
           <label class="form-check-label col-lg-4" for="studentCategory"> I am student </label>
+          <div class="reveal-if-active">
+              <p> Enter your date of birth.  You must be 13 years old or older to use this site. </p>
+              <label for="DOB"> Date of Birth: </label>
+              <input type="date" id="DOB" name="DOB" placeholder="DD/MM/YY" required/>
+          </div>
         </div>
     
 
@@ -132,7 +134,7 @@
           required
         />
       </div> -->
-    </div>
+     -->
 
     <!-- <div>
       <fieldset>
