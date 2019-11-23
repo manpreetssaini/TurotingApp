@@ -29,6 +29,7 @@
     "session": "^0.1.0"
   },
   "devDependencies": {
+    "fake-data-generator": "^0.1.10",
     "nodemon": "^1.19.4"
   }
 }

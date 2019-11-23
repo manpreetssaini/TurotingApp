@@ -27,38 +27,51 @@ CREATE TABLE IF NOT EXISTS 	`tutors` (
     PRIMARY KEY (`tutor_id`))
     Engine = InnoDB DEFAULT CHARSET= latin1 AUTO_INCREMENT=1; 
  
--- add FOREIGN KEY student_id -- 
-    CREATE TABLE IF NOT EXISTS `student_request` (
+  CREATE TABLE IF NOT EXISTS `student_request` (
     `request_id` INT NOT NULL AUTO_INCREMENT,
+    `student_id` INT NOT NULL,
     `subject` VARCHAR(255) NOT NULL,
     `topic` VARCHAR(255) NOT NULL,
     `description` VARCHAR(8000) NOT NULL,
     `session_length` TIME NOT NULL,
-    PRIMARY KEY(`request_id`))
+    PRIMARY KEY(`request_id`),
+    foreign key(`student_id`) references students(student_id))
     Engine = InnoDB DEFAULT CHARSET= latin1 AUTO_INCREMENT=1; 
 
 -- ADD FOREIGN KEY student_id and request_id --
 
-    CREATE TABLE IF NOT EXISTS `student_rating` (
+        CREATE TABLE IF NOT EXISTS `student_rating` (
         `student_rating_id` INT NOT NULL,
         `rating` float NOT NULL,
         `timestamp` time NOT NULL,
-        PRIMARY KEY (`student_rating_id`)
-    )Engine = InnoDB DEFAULT CHARSET= latin1;
+        `student_id` INT NOT NULL,
+        `request_id` INT NOT NULL,
+        PRIMARY KEY (`student_rating_id`),
+        foreign key(`student_id`) references students(student_id),
+        foreign key(`request_id`) references student_request(request_id))
+        Engine = InnoDB DEFAULT CHARSET= latin1;
 
 -- ADD FOREIGN KEY student_id and tutor_id --
 
     CREATE TABLE IF NOT EXISTS `tutoring_session` (
         `session_id` INT NOT NULL AUTO_INCREMENT,
         `session_date` DATE NOT NULL,
-        PRIMARY KEY (`session_id`)
-    ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+        `student_id` INT NOT NULL,
+        `tutor_id` INT NOT NULL,
+        PRIMARY KEY (`session_id`),
+		foreign key(`student_id`) references students(student_id),
+        foreign key(`tutor_id`) references tutors(tutor_id)) 
+        ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
     -- ADD FOREIGN KEY tutor_id and session_id --
 
-    CREATE TABLE IF NOT EXISTS `tutor_rating` (
+       CREATE TABLE IF NOT EXISTS `tutor_rating` (
         `tutor_rating_id` INT NOT NULL,
         `rating` float NOT NULL,
         `timestamp` time NOT NULL,
-        PRIMARY KEY (`tutor_rating_id`)
-    )Engine = InnoDB DEFAULT CHARSET= latin1;
+        `tutor_id` INT NOT NULL,
+        `session_id` INT NOT NULL,
+        PRIMARY KEY (`tutor_rating_id`),
+        foreign key(`tutor_id`) references tutors(tutor_id),
+        foreign key(`session_id`) references tutoring_session(session_id))
+		Engine = InnoDB DEFAULT CHARSET= latin1;
