@@ -1,6 +1,5 @@
 const express = require("express");
 const session = require("express-session");
-const routes = require("./server/routes");
 const bodyParser = require("body-parser");
 const mysql = require("mysql");
 const path = require("path");
@@ -9,6 +8,11 @@ const defaultErrorHandler = require("./server/middleware/errorHandler");
 const authenticate = require("./server/middleware/authentication");
 const faker = require("faker");
 require("dotenv").config();
+
+// const routes = require("./server/routes");
+// const loginRouter = require("./server/routes/login");
+// const registerRouter = require("./server/routes/register");
+// const dashboardRouter = require("./server/routes/dashboard");
 
 const app = express();
 
@@ -20,7 +24,7 @@ const db = mysql.createConnection({
   user: "root",
   password: "uGotY0rked",
   database: "tutors_db",
-  insecureAuth: true
+  port: 3306
 });
 
 db.connect(err => {
@@ -53,8 +57,8 @@ app.use("/public", express.static(path.join(__dirname, "public")));
 app.use(fileUpload());
 app.use(authenticate.parseUser);
 app.use(defaultErrorHandler);
-app.use(routes);
 
+const routes = require("./server/routes")(app);
 app.listen(port, () => {
   console.log(`Server running on port: ${port}`);
 });

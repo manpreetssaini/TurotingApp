@@ -54,7 +54,7 @@ body {
   width: 8rem;
   border-radius: 0px;
   background-color: #242325;
-  padding: 0;
+  padding: 1em;
 }
 
 .card:hover {

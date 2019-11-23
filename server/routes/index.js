@@ -1,35 +1,36 @@
-const routes = require("express").Router();
+const router = require("express").Router();
 
-routes.get("/", (req, res) => {
-  res.render("landing");
-});
+module.exports = app => {
+  app.get("/results", (req, res) => {
+    res.render("results");
+  });
 
-routes.get("/register", (req, res) => {
-  res.render("register");
-});
+  app.get("/search", (req, res) => {
+    res.render("search");
+  });
 
-routes.get("/login", (req, res) => {
-  res.render("login");
-});
+  app.get("/home", (req, res) => {
+    res.render("student_home");
+  });
 
-routes.get("/register", (req, res) => {
-  res.render("register");
-});
+  app.get("/", (req, res) => {
+    res.render("landing");
+  });
 
-routes.get("/results", (req, res) => {
-  res.render("results");
-});
+  app.get("/login", (req, res) => {
+    res.render("login");
+  });
 
-routes.get("/search", (req, res) => {
-  res.render("search");
-});
+  app.get("/register", (req, res) => {
+    res.render("register");
+  });
 
-routes.get("/home", (req, res) => {
-  res.render("home");
-});
+  app.get("/random", (req, res) => {
+    res.render("random");
+  });
 
-routes.post("/register", (req, res) => {
-  res.status(200);
-});
-module.exports = routes;
+  app.post("/register", (req, res) => {
+    res.status(200);
+  });
+};
 // comment
