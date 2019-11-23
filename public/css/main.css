@@ -79,7 +79,7 @@ form {
 
 #homeProfilePic {
   border-radius: 50%;
-  width: 40%;
+  width: 10%;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -87,10 +87,6 @@ form {
 
 .profileInfo {
   float: left;
-}
-
-.profileHeading {
-  font-size: 1.5rem;
 }
 
 td {
