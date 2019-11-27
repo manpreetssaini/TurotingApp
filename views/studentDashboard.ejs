@@ -9,7 +9,6 @@
         <!-- username -->
       </h1>
       <p id="lastLogin">
-        Last Login:
         <!-- last_login -->
       </p>
       <h2>User Profile</h2>
@@ -18,37 +17,27 @@
     <table>
       <tr>
         <td class="profileHeading"> Username:</td>
-        <td style="vertical-align: center;"> wfong1002 </td>
+        <td style="vertical-align: center;"> <%= student[0].user_name%></td>
       </tr>
     
       <!-- full_name -->
       <tr>
         <td class="profileHeading">Name:</td>
-        <td>Wilson Fong</td>
+        <td> <%= full_name %></td>
       </tr>
           <!-- DOB -->
           <tr>
             <td class="profileHeading">Date of Birth:</td>
-            <td>Oct. 2, 1982</td>
+            <td> <%= student[0].dob %></td>
           </tr>
 
           <!-- location -->
           <div>
             <td class="profileHeading">Location:</td>
-            <td >Toronto, ON</td>
+            <td ><%= student[0].city %></td>
           </div>
 
-          <!-- grade -->
-          <tr>
-            <td class="profileHeading">Grade(s):</td>
-            <td>12</td>
-          </tr>
 
-          <!-- subjects -->
-          <tr>
-            <td class="profileHeading">Subjects:</td>
-            <td >Math, Computer Science</td>
-          </tr>
         </table>
 
       <button id="editProfile" type="button" class="btn btn-success">Edit Profile</button>

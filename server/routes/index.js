@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { getStudentProfile } = require("./studentDashboard");
 
 module.exports = app => {
   app.get("/results", (req, res) => {
@@ -9,11 +10,9 @@ module.exports = app => {
     res.render("search");
   });
 
-  app.get("/home", (req, res) => {
-    res.render("student_home");
-  });
+  app.get("/dashboard", getStudentProfile);
 
-  app.get("/", (req, res) => {
+  app.get("/landing", (req, res) => {
     res.render("landing");
   });
 
