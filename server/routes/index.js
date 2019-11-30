@@ -11,7 +11,7 @@ module.exports = app => {
     res.render("search");
   });
 
-  app.get("/studentdashboard", getStudentProfile);
+  app.get("/studentdashboard/:id", getStudentProfile);
   app.post("/sendRequest", sendRequest);
   app.get("/tutordashboard", getTutorProfile);
 

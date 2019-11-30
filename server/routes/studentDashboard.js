@@ -10,15 +10,15 @@ module.exports = {
       "INSERT INTO student_request (student_id, subject, topic, description, start_time, end_time) VALUES (?, ?,?,?,?,DATE_ADD(?, INTERVAL 30 MINUTE));";
 
     const values = [
-      1,
+      req.body.studentID,
       req.body.subject,
       req.body.topic,
       req.body.description,
       String(start_time),
       String(start_time)
     ];
-
     console.log(query);
+
     connection.db.query(
       query,
       values,
@@ -34,8 +34,9 @@ module.exports = {
   },
 
   getStudentProfile: (req, res) => {
-    const query = "SELECT * FROM students LIMIT 1";
-    connection.db.query(query, (err, result) => {
+    let student_id = req.params.id;
+    const query = "SELECT * FROM students WHERE student_id =? LIMIT 1";
+    connection.db.query(query, student_id, (err, result) => {
       if (err) {
         throw err;
       }

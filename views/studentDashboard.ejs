@@ -15,6 +15,7 @@
 
       <!-- username -->
     <table>
+      <tr class="student_id"> 
       <tr>
         <td class="profileHeading"> Username:</td>
         <td style="vertical-align: center;"> <%= student[0].user_name%></td>
@@ -89,6 +90,9 @@
                   <div>
                       <p> Select a time and date that you would like tutoring: </p>
                       <input type="datetime-local" name="date" placeholder="Date" required> </input>
+                  </div>
+                  <div id="hiddenStudentId"> 
+                    <input type="text" name="studentID" value=<%= student[0].student_id%>> </input>
                   </div>
                   <button type="submit" > Send Request </button>
       </form>
