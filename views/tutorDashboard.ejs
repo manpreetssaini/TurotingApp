@@ -31,13 +31,16 @@
             <td> <%= tutor[0].dob %></td>
           </tr>
 
+          <tr>
           <!-- location -->
-          <div>
             <td class="profileHeading">Location:</td>
             <td ><%= tutor[0].city %></td>
-          </div>
+          </tr>
 
-
+          <tr>
+            <td class="specialtyHeading"> Specialty: </td>
+            <td> <%= tutor[0].speciality %> </td>
+          </tr>
         </table>
 
       <button id="editProfile" type="button" class="btn btn-success">Edit Profile</button>

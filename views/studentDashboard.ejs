@@ -3,7 +3,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-lg-4">
+   
       <img src="/public/img/profile-placeholder.png" id="homeProfilePic" />
       <h1>
         <!-- username -->
@@ -36,17 +36,66 @@
             <td class="profileHeading">Location:</td>
             <td ><%= student[0].city %></td>
           </div>
-
-
         </table>
 
       <button id="editProfile" type="button" class="btn btn-success">Edit Profile</button>
       
+      <form id="searchRequest" method="POST" action="/sendRequest">
+              <p> Subject: </p>
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                  <label class="btn btn-secondary active">
+                    <input type="radio" name="subject" value="math" autocomplete="off" checked> Math
+                  </label>
+                  <label class="btn btn-secondary">
+                    <input type="radio" name="subject" value="science" autocomplete="off"> Science
+                  </label>
+                  <label class="btn btn-secondary">
+                    <input type="radio" name="subject" value="computer_studies" autocomplete="off"> Computer Studies
+                  </label>
+                  <label class="btn btn-secondary">
+                      <input type="radio" name="subject" value="english" autocomplete="off"> English
+                    </label>
+                  </div>
+                  <p> Location: </p>
+                  <div class="btn-group btn-group-toggle btn-primary" data-toggle="buttons">
+                      <label class="btn btn-secondary active">
+                        <input type="radio" name="location" value="downtown_toronto" autocomplete="off" checked> Downtown Toronto
+                      </label>
+                      <label class="btn btn-secondary">
+                        <input type="radio" name="location" value="north_york" autocomplete="off"> North York
+                      </label>
+                      <label class="btn btn-secondary">
+                        <input type="radio" name="location" value="etobicoke" autocomplete="off"> Etobicoke
+                      </label>
+                      <label class="btn btn-secondary">
+                          <input type="radio" name="location" value="scarborough" autocomplete="off"> Scaroborough
+                      </label>
+                      <label class="btn btn-secondary">
+                          <input type="radio" name="location" value="north_york" autocomplete="off"> North York
+                        </label>
+                        <label class="btn btn-secondary">
+                          <input type="radio" name="location" value="etobicoke" autocomplete="off"> Etobicoke
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="location" value="scarborough" autocomplete="off"> Scaroborough
+                        </label>
+                  </div>
+                  <div>
+                  <p> What topic do you need help in? </p>
+                  <input type="text" name="topic" placeholder="topic"> </input>
+                  <p> Describe your problem </p> 
+                  <input type="text" name="description" placeholder="description"> </input>
+                  </div> 
+                  <div>
+                      <p> Select a time and date that you would like tutoring: </p>
+                      <input type="datetime-local" name="date" placeholder="Date" required> </input>
+                  </div>
+                  <button type="submit" > Send Request </button>
+      </form>
 
         <!-- upcoming_sessions -->
-      </div>
+
     </div>
-    <div class="col-lg-6">
         <div id="upcoming_sessions">
             <h3 id="upcomingHeading">Upcoming Sessions</h3>
             <table>

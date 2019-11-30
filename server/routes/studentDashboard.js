@@ -1,6 +1,38 @@
 const connection = require("../../connection");
 
 module.exports = {
+  sendRequest: (req, res) => {
+    let start_time = new Date(req.body.date)
+      .toJSON()
+      .slice(0, 19)
+      .replace("T", " ");
+    const query =
+      "INSERT INTO student_request (student_id, subject, topic, description, start_time, end_time) VALUES (?, ?,?,?,?,DATE_ADD(?, INTERVAL 30 MINUTE));";
+
+    const values = [
+      1,
+      req.body.subject,
+      req.body.topic,
+      req.body.description,
+      String(start_time),
+      String(start_time)
+    ];
+
+    console.log(query);
+    connection.db.query(
+      query,
+      values,
+      (err, result) => {
+        if (err) {
+          throw err;
+        }
+      },
+      () => {
+        res.redirect("/studentDashboard");
+      }
+    );
+  },
+
   getStudentProfile: (req, res) => {
     const query = "SELECT * FROM students LIMIT 1";
     connection.db.query(query, (err, result) => {
