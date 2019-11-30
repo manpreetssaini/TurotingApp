@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { getStudentProfile } = require("./studentDashboard");
+const { getTutorProfile } = require("./tutorDashboard");
 
 module.exports = app => {
   app.get("/results", (req, res) => {
@@ -10,9 +11,10 @@ module.exports = app => {
     res.render("search");
   });
 
-  app.get("/dashboard", getStudentProfile);
+  app.get("/studentdashboard", getStudentProfile);
+  app.get("/tutordashboard", getTutorProfile);
 
-  app.get("/landing", (req, res) => {
+  app.get("/", (req, res) => {
     res.render("landing");
   });
 
@@ -22,10 +24,6 @@ module.exports = app => {
 
   app.get("/register", (req, res) => {
     res.render("register");
-  });
-
-  app.get("/random", (req, res) => {
-    res.render("random");
   });
 
   app.post("/register", (req, res) => {

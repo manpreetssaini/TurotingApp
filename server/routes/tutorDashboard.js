@@ -1,26 +1,27 @@
 const connection = require("../../connection");
 
 module.exports = {
-  getStudentProfile: (req, res) => {
-    const query = "SELECT * FROM students LIMIT 1";
+  getTutorProfile: (req, res) => {
+    const query = "SELECT * FROM tutors LIMIT 1";
     connection.db.query(query, (err, result) => {
       if (err) {
         throw err;
       }
+      console.log(result);
+      let tutor = result;
 
-      let student = result;
-
-      let full_name = student[0].first_name + " " + student[0].last_name;
-
+      let full_name = tutor[0].first_name + " " + tutor[0].last_name;
+      console.log(full_name);
       const upcomingQuery =
-        "SELECT * FROM student_request WHERE student_id=" +
-        student[0].student_id +
-        " LIMIT 3";
+        "SELECT * FROM student_request WHERE subject='" +
+        tutor[0].speciality +
+        "'" +
+        "AND start_time >= NOW() LIMIT 3";
       connection.db.query(upcomingQuery, (err, result) => {
         if (err) {
           throw err;
         }
-        const upcomingSessions = result.map(res => {
+        const requestedSessions = result.map(res => {
           return {
             subject: res.subject,
             topic: res.topic,
@@ -29,11 +30,11 @@ module.exports = {
             end_time: res.end_time
           };
         });
-        console.log(upcomingSessions);
-        res.render("studentDashboard.ejs", {
-          student,
+
+        res.render("tutorDashboard.ejs", {
+          tutor,
           full_name,
-          upcomingSessions
+          requestedSessions
         });
       });
     });

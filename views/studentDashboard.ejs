@@ -50,16 +50,27 @@
         <div id="upcoming_sessions">
             <h3 id="upcomingHeading">Upcoming Sessions</h3>
             <table>
+              <thead>
               <tr>
-                <th>Date</th>
-                <th>Tutor</th>
                 <th>Subject</th>
+                <th>Topic</th>
+                <th>Description</th>
+                <th>Start Time </th>
+                <th> End Time </th>
               </tr>
+              </thead>
+
+              <tbody>
+              <% upcomingSessions.forEach((session, index) => { %>
               <tr>
-                <td>12/30/2019</td>
-                <td>Tarun Sharma </td>
-                <td>Blockchain </td>
+                <td><%=session.subject %></td>
+                <td><%=session.topic %></td>
+                <td><%= session.description %></td>
+                <td><%= session.start_time %>    </td>
+                <td><%= session.end_time %>   </td>
               </tr>
+              <%  }); %>
+            </tbody>
             </table>
         <table id="history">
          
