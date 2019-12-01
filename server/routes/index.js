@@ -1,6 +1,10 @@
 const router = require("express").Router();
 const { sendRequest, getStudentProfile } = require("./studentDashboard");
-const { getTutorProfile } = require("./tutorDashboard");
+const {
+  acceptRequest,
+  rejectRequest,
+  getTutorProfile
+} = require("./tutorDashboard");
 
 module.exports = app => {
   app.get("/results", (req, res) => {
@@ -13,7 +17,10 @@ module.exports = app => {
 
   app.get("/studentdashboard/:id", getStudentProfile);
   app.post("/sendRequest", sendRequest);
-  app.get("/tutordashboard", getTutorProfile);
+
+  app.get("/tutordashboard/:id", getTutorProfile);
+  app.post("/acceptRequest", acceptRequest);
+  app.post("/rejectRequest", rejectRequest);
 
   app.get("/", (req, res) => {
     res.render("landing");

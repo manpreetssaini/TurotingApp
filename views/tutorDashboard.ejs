@@ -60,6 +60,9 @@
                 <th>Description</th>
                 <th>Start Time </th>
                 <th> End Time </th>
+                <th> Accept? </th>
+                <th> Reject? </th>
+                <th> Personally Requested? </th>
               </tr>
               </thead>
 
@@ -71,7 +74,17 @@
                 <td><%= session.description %></td>
                 <td><%= session.start_time %>    </td>
                 <td><%= session.end_time %>   </td>
-              </tr>
+                
+                <td>
+                        <form action="/acceptRequest" method="POST">     
+                            <button type="submit" class="btn btn-primary" name="accept"  value="<%= session.request_id %>" >  Accept </button> </td>
+                            
+                        </form>
+                        <form action="/rejectRequest" method="POST">    
+                            <td> <button type="submit" class="btn btn-danger" name="reject" value="<%= session.request_id %>" > Reject </button> </td>
+                        </form>
+                            <td> <% if (session.tutor_id === undefined) {%> <%="No" %> <%} else {%> <%= "Yes" %> <%}%> </td> 
+                </tr>
               <%  }); %>
             </tbody>
             </table>
