@@ -12,7 +12,7 @@ module.exports = function (passport) {
     });
 
     passport.deserializeUser(function (id, done) {
-        connection.query("SELECT * FROM students WHERE id = ? ", [id],
+        connection.query("SELECT * FROM users WHERE id = ? ", [id],
             function (err, rows) {
                 done(err, rows[0]);
             });
@@ -31,7 +31,7 @@ module.exports = function (passport) {
                         if (err)
                             return done(err);
                         if (rows.length) {
-                            return done(null, false, req.flash('signupMessage', 'That is already taken'));
+                            return done(null, false, req.flash('signupMessage', 'That username is already taken'));
                         } else {
                             let newUserMysql = {
                                 username: username,

@@ -46,7 +46,7 @@ app.use(cookieParser);
 app.use(authenticate.parseUser);
 app.use(defaultErrorHandler);
 
-require('./server/routes/login-resgister')(app, passport);
+require('./server/routes/login-register')(app, passport);
 
 app.listen(port, () => {
   console.log(`Server running on port: ${port}`);

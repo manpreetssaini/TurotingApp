@@ -3,8 +3,8 @@
 const router = require('express').Router();
 const { sendRequest, getStudentProfile } = require('./studentDashboard');
 const { getTutorProfile } = require('./tutorDashboard');
-const { registeration } = require('./register');
-const { userLogin } = require('./login');
+const { registeration } = require('./login-register');
+const { login } = require('./login-register');
 
 module.exports = app => {
   app.get('/results', (req, res) => {
@@ -27,7 +27,7 @@ module.exports = app => {
     res.render('login');
   });
 
-  app.post('/login')
+  app.post('/login', login);
 
   app.get('/register', (req, res) => {
     res.render('register')
