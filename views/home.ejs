@@ -1,48 +1,97 @@
-<% include partials/header.ejs %>
+<% include partials/member_header.ejs %>
 
-<h1>
-  <!-- username -->
-</h1>
-<p>
-  Last Login:
-  <!-- last_login -->
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <img src="/public/img/profile-placeholder.png" id="homeProfilePic" />
+    </div>
+    <h1>
+      <!-- username -->
+    </h1>
+    <p id="lastLogin">
+      Last Login:
+      <!-- last_login -->
+    </p>
 
-<button type="button" class="btn btn-success">Book a Tutor</button>
-<div id="upcoming_sessions">
-  <h1>Upcoming Sessions</h1>
-  <table>
-    <tr>
-      <th>Date</th>
-      <th>Tutor</th>
-      <th>Subject</th>
-    </tr>
-  </table>
+    <div class="col-lg-4">
+      <h2>User Profile</h2>
 
-  <!-- upcoming_sessions -->
+      <!-- username -->
+      <table>
+        <tr>
+          <td class="profileHeading"> Username:</td>
+          <td style="vertical-align: center;"> wfong1002 </td>
+        </tr>
+
+        <!-- full_name -->
+        <tr>
+          <td class="profileHeading">Name:</td>
+          <td>Wilson Fong</td>
+        </tr>
+        <!-- DOB -->
+        <tr>
+          <td class="profileHeading">Date of Birth:</td>
+          <td>Oct. 2, 1982</td>
+        </tr>
+
+        <!-- location -->
+        <div>
+          <td class="profileHeading">Location:</td>
+          <td>Toronto, ON</td>
+        </div>
+
+        <!-- grade -->
+        <tr>
+          <td class="profileHeading">Grade(s):</td>
+          <td>12</td>
+        </tr>
+
+        <!-- subjects -->
+        <tr>
+          <td class="profileHeading">Subjects:</td>
+          <td>Math, Computer Science</td>
+        </tr>
+      </table>
+
+      <button id="editProfile" type="button" class="btn btn-success">Edit Profile</button>
+
+
+    </div>
+    <!-- </div> -->
+    <div class="col-lg-8">
+      <div id="upcoming_sessions">
+        <h3 id="upcomingHeading">Upcoming Sessions</h3>
+        <table>
+          <tr>
+            <th>Date</th>
+            <th>Tutor</th>
+            <th>Subject</th>
+          </tr>
+          <tr>
+            <td>12/30/2019</td>
+            <td>Tarun Sharma </td>
+            <td>Blockchain </td>
+          </tr>
+        </table>
+        <table id="history">
+
+          <h4>History</h4>
+          <tr>
+            <th>Date</th>
+            <th>Tutor</th>
+            <th>Subject</th>
+            <th>Rating</th>
+          </tr>
+          <tr>
+            <td> 11/11/2019 </td>
+            <td> Manpreet Saini </td>
+            <td> Physics </td>
+            <td> 4 stars </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
-
-<h1>User Profile</h1>
-<h3>Username:</h3>
-<!-- username -->
-<h3>Name:</h3>
-<!-- full_name -->
-<h3>Date of Birth:</h3>
-<!-- DOB -->
-<h3>Location:</h3>
-<!-- location -->
-<h3>Grade:</h3>
-<!-- grade -->
-<h3>Subjects:</h3>
-<!-- subjects -->
-
-<div id="history">
-  <tr>
-    <th>Date</th>
-    <th>Tutor</th>
-    <th>Subject</th>
-    <th>Rating</th>
-  </tr>
 </div>
-
 <% include partials/footer.ejs %>

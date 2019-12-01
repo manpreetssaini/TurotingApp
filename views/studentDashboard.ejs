@@ -1,0 +1,150 @@
+<% include partials/member_header.ejs %>
+
+
+<div class="container">
+    <div class="row">
+
+        <img src="/public/img/profile-placeholder.png" id="homeProfilePic" />
+        <h1>
+            <!-- username -->
+        </h1>
+        <p id="lastLogin">
+            <!-- last_login -->
+        </p>
+        <h2>User Profile</h2>
+
+        <!-- username -->
+        <table>
+            <tr class="student_id">
+            <tr>
+                <td class="profileHeading"> Username:</td>
+                <td style="vertical-align: center;"> <%= student[0].user_name%></td>
+            </tr>
+
+            <!-- full_name -->
+            <tr>
+                <td class="profileHeading">Name:</td>
+                <td> <%= full_name %></td>
+            </tr>
+            <!-- DOB -->
+            <tr>
+                <td class="profileHeading">Date of Birth:</td>
+                <td> <%= student[0].dob %></td>
+            </tr>
+
+            <!-- location -->
+            <div>
+                <td class="profileHeading">Location:</td>
+                <td><%= student[0].city %></td>
+            </div>
+        </table>
+
+        <button id="editProfile" type="button" class="btn btn-success">Edit Profile</button>
+
+        <form id="searchRequest" method="POST" action="/sendRequest">
+            <p> Subject: </p>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="subject" value="math" autocomplete="off" checked> Math
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="subject" value="science" autocomplete="off"> Science
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="subject" value="computer_studies" autocomplete="off"> Computer Studies
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="subject" value="english" autocomplete="off"> English
+                </label>
+            </div>
+            <p> Location: </p>
+            <div class="btn-group btn-group-toggle btn-primary" data-toggle="buttons">
+                <label class="btn btn-secondary active">
+                    <input type="radio" name="location" value="downtown_toronto" autocomplete="off" checked> Downtown
+                    Toronto
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="location" value="north_york" autocomplete="off"> North York
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="location" value="etobicoke" autocomplete="off"> Etobicoke
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="location" value="scarborough" autocomplete="off"> Scaroborough
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="location" value="north_york" autocomplete="off"> North York
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="location" value="etobicoke" autocomplete="off"> Etobicoke
+                </label>
+                <label class="btn btn-secondary">
+                    <input type="radio" name="location" value="scarborough" autocomplete="off"> Scaroborough
+                </label>
+            </div>
+            <div>
+                <p> What topic do you need help in? </p>
+                <input type="text" name="topic" placeholder="topic"> </input>
+                <p> Describe your problem </p>
+                <input type="text" name="description" placeholder="description"> </input>
+            </div>
+            <div>
+                <p> Select a time and date that you would like tutoring: </p>
+                <input type="datetime-local" name="date" placeholder="Date" required> </input>
+            </div>
+            <div id="hiddenStudentId">
+                <input type="text" name="studentID" value=<%= student[0].student_id%>> </input>
+            </div>
+            <button type="submit"> Send Request </button>
+        </form>
+
+        <!-- upcoming_sessions -->
+
+    </div>
+    <div id="upcoming_sessions">
+        <h3 id="upcomingHeading">Upcoming Sessions</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Subject</th>
+                    <th>Topic</th>
+                    <th>Description</th>
+                    <th>Start Time </th>
+                    <th> End Time </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% upcomingSessions.forEach((session, index) => { %>
+                <tr>
+                    <td><%=session.subject %></td>
+                    <td><%=session.topic %></td>
+                    <td><%= session.description %></td>
+                    <td><%= session.start_time %> </td>
+                    <td><%= session.end_time %> </td>
+                </tr>
+                <%  }); %>
+            </tbody>
+        </table>
+        <table id="history">
+
+            <h4>History</h4>
+            <tr>
+                <th>Date</th>
+                <th>Tutor</th>
+                <th>Subject</th>
+                <th>Rating</th>
+            </tr>
+            <tr>
+                <td> 11/11/2019 </td>
+                <td> Manpreet Saini </td>
+                <td> Physics </td>
+                <td> 4 stars </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<% include partials/footer.ejs %>

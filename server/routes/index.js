@@ -1,11 +1,38 @@
 'use strict';
 
-const express = require('express');
+const router = require('express').Router();
+const { sendRequest, getStudentProfile } = require('./studentDashboard');
+const { getTutorProfile } = require('./tutorDashboard');
+const { registeration } = require('./register');
+const { userLogin } = require('./login');
 
-const router = express.Router();
+module.exports = app => {
+  app.get('/results', (req, res) => {
+    res.render('results');
+  });
 
-router.get('/', (req, res) => {
-  res.render('index');
-});
+  app.get('/search', (req, res) => {
+    res.render('search');
+  });
 
-module.exports = router;
+  app.get('/studendashboard/:id', getStudentProfile);
+  app.post('/sendRequest', sendRequest);
+  app.get('/tutordashboard', getTutorProfile);
+
+  app.get('/', (req, res) => {
+    res.render('index');
+  });
+
+  app.get('/login', (req, res) => {
+    res.render('login');
+  });
+
+  app.post('/login')
+
+  app.get('/register', (req, res) => {
+    res.render('register')
+  });
+
+  app.post('/register', registeration);
+
+};
