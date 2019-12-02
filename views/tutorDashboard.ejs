@@ -41,6 +41,9 @@
             <td class="specialtyHeading"> Specialty: </td>
             <td> <%= tutor[0].speciality %> </td>
           </tr>
+
+          <tr>
+        </tr>
         </table>
 
       <button id="editProfile" type="button" class="btn btn-success">Edit Profile</button>
@@ -65,9 +68,10 @@
                 <th> Personally Requested? </th>
               </tr>
               </thead>
-
               <tbody>
               <% requestedSessions.forEach((session, index) => { %>
+                            <% console.log(tutor[0].tutor_id) %>
+
               <tr>
                 <td><%=session.subject %></td>
                 <td><%=session.topic %></td>
@@ -76,34 +80,49 @@
                 <td><%= session.end_time %>   </td>
                 
                 <td>
-                        <form action="/acceptRequest" method="POST">     
+                        <form action="/acceptRequest" method="POST">      
+                            <input  type="radio" class="hiddenId" name="tutorID" checked='true' value="<%= tutor[0].tutor_id %>""> </input>
                             <button type="submit" class="btn btn-primary" name="accept"  value="<%= session.request_id %>" >  Accept </button> </td>
-                            
                         </form>
+                </td>
+                <td>
                         <form action="/rejectRequest" method="POST">    
-                            <td> <button type="submit" class="btn btn-danger" name="reject" value="<%= session.request_id %>" > Reject </button> </td>
+                            <input class="hiddenId" type="radio" checked='true' name="tutorID" value="<%= tutor[0].tutor_id %>"> </input>
+                            <button type="submit" class="btn btn-danger" name="reject" value="<%= session.request_id %>" > Reject </button> 
                         </form>
+                </td>
                             <td> <% if (session.tutor_id === undefined) {%> <%="No" %> <%} else {%> <%= "Yes" %> <%}%> </td> 
                 </tr>
               <%  }); %>
+
+              
             </tbody>
             </table>
-        <table id="requested_sessions">
+        <table id="accepted_sessions">
          
-            <h4>History</h4>
+            <h4>Accepted Requests</h4>
+            <thead>
             <tr>
-              <th>Date</th>
-              <th>Tutor</th>
+              <th>Student</th>
               <th>Subject</th>
-              <th>Rating</th>
+              <th>Topic</th>
+              <th>Description</th>
+              <th>Start Time</th>
             </tr>
+            </thead>
+            <tbody>
+                <% acceptedSessions.forEach((session, index) => { %>
             <tr> 
-              <td> 11/11/2019 </td>
-              <td> Manpreet Saini </td>
-              <td> Physics </td>
-              <td>   4 stars      </td>
+              <td> <%= session.first_name %></td>
+              <td> <%= session.subject %> </td>
+              <td> <%= session.topic %></td>
+              <td> <%= session.description %></td>
+              <td> <%= session.start_time %> </td>
             </tr>
+            <%  }); %>
+            </tbody>
           </table>
+
         </div>
       </div>
     </div>

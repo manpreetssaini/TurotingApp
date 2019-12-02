@@ -17,7 +17,7 @@ module.exports = {
       String(start_time),
       String(start_time)
     ];
-    console.log(query);
+    console.log(values);
 
     connection.db.query(
       query,
@@ -28,7 +28,7 @@ module.exports = {
         }
       },
       () => {
-        res.redirect("/studentDashboard");
+        res.redirect("back");
       }
     );
   },
@@ -48,7 +48,7 @@ module.exports = {
       const upcomingQuery =
         "SELECT * FROM student_request WHERE student_id=" +
         student[0].student_id +
-        " LIMIT 3";
+        " ORDER BY request_id DESC LIMIT 3";
       connection.db.query(upcomingQuery, (err, result) => {
         if (err) {
           throw err;
