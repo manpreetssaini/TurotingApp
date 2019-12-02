@@ -3,7 +3,8 @@ const { sendRequest, getStudentProfile } = require("./studentDashboard");
 const {
   acceptRequest,
   rejectRequest,
-  getTutorProfile
+  getTutorProfile,
+  editProfile
 } = require("./tutorDashboard");
 
 module.exports = app => {
@@ -21,6 +22,7 @@ module.exports = app => {
   app.get("/tutordashboard/:id", getTutorProfile);
   app.post("/acceptRequest", acceptRequest);
   app.post("/rejectRequest", rejectRequest);
+  app.get("/editProfile", editProfile);
 
   app.get("/", (req, res) => {
     res.render("landing");

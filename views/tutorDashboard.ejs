@@ -46,8 +46,10 @@
         </tr>
         </table>
 
-      <button id="editProfile" type="button" class="btn btn-success">Edit Profile</button>
-      
+      <form action="/editProfile" method="GET">
+            <input class="hiddenId" type="radio" checked='true' name="tutorID" value="<%= tutor[0].tutor_id %>"> </input>
+            <button id="editProfile" name="editProfile" type="submit" class="btn btn-success">Edit Profile</button>
+      </form>
 
         <!-- upcoming_sessions -->
       </div>
@@ -70,8 +72,6 @@
               </thead>
               <tbody>
               <% requestedSessions.forEach((session, index) => { %>
-                            <% console.log(tutor[0].tutor_id) %>
-
               <tr>
                 <td><%=session.subject %></td>
                 <td><%=session.topic %></td>
@@ -81,14 +81,16 @@
                 
                 <td>
                         <form action="/acceptRequest" method="POST">      
-                            <input  type="radio" class="hiddenId" name="tutorID" checked='true' value="<%= tutor[0].tutor_id %>""> </input>
-                            <button type="submit" class="btn btn-primary" name="accept"  value="<%= session.request_id %>" >  Accept </button> </td>
+                            <input  type="radio" class="hiddenId" name="tutorID" checked='true' value="<%= tutor[0].tutor_id %>"> </input>
+                            <input type="checkbox" name="accept" class="hiddenId" checked value="<%= session.request_id %>"> </input>
+                            <button type="submit" class="btn btn-primary">  Accept </button>
                         </form>
                 </td>
                 <td>
                         <form action="/rejectRequest" method="POST">    
                             <input class="hiddenId" type="radio" checked='true' name="tutorID" value="<%= tutor[0].tutor_id %>"> </input>
-                            <button type="submit" class="btn btn-danger" name="reject" value="<%= session.request_id %>" > Reject </button> 
+                            <input type="checkbox" name="reject" class="hiddenId" checked value="<%= session.request_id %>"> </input>
+                            <button type="submit" class="btn btn-danger"> Reject </button> 
                         </form>
                 </td>
                             <td> <% if (session.tutor_id === undefined) {%> <%="No" %> <%} else {%> <%= "Yes" %> <%}%> </td> 
