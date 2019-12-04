@@ -46,18 +46,16 @@ module.exports = {
       //   console.log(tutor[0].tutor_id);
       let full_name = tutor[0].first_name + " " + tutor[0].last_name;
       const upcomingQuery =
-        "SELECT  student_request.*, rejected_requests.rejected_by FROM student_request LEFT JOIN rejected_requests ON student_request.request_id = rejected_requests.request_id WHERE (rejected_by <> ? OR rejected_by IS NULL) AND subject='" +
-        tutor[0].speciality +
-        "'" +
-        "AND  (tutor_id IS NULL OR ?) AND accepted IS FALSE AND start_time >= NOW() ORDER BY start_time DESC LIMIT 3";
+        " (SELECT student_request.*, rejected_requests.rejected_by FROM student_request LEFT JOIN rejected_requests ON student_request.request_id = rejected_requests.request_id WHERE NOT EXISTS (SELECT * FROM rejected_requests WHERE (rejected_by = ?) GROUP BY request_id)) UNION (SELECT student_request.*, rejected_requests.rejected_by FROM student_request LEFT JOIN rejected_requests ON student_request.request_id = rejected_requests.request_id WHERE (rejected_by IS NULL) AND subject=? AND  (tutor_id IS NULL OR tutor_id = ?)  AND accepted IS FALSE AND start_time >= NOW())  ORDER BY start_time DESC LIMIT 4;";
+
       connection.db.query(
         upcomingQuery,
-        [tutor[0].tutor_id, tutor[0].tutor_id],
+        [tutor[0].tutor_id, tutor[0].subject, tutor[0].tutor_id],
         (err, result) => {
           if (err) {
             throw err;
           }
-          console.log(result);
+          //   console.log(result);
           const requestedSessions = result.map(res => {
             return {
               request_id: res.request_id,
@@ -68,7 +66,7 @@ module.exports = {
               end_time: res.end_time
             };
           });
-          console.log(requestedSessions);
+          //   console.log(requestedSessions);
 
           const acceptedQuery =
             "SELECT * FROM student_request INNER JOIN students ON student_request.student_id = students.student_id WHERE tutor_id = ? AND start_time >= NOW() ORDER BY start_time DESC LIMIT 3;";

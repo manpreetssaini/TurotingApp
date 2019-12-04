@@ -19,18 +19,12 @@ module.exports = {
     ];
     console.log(values);
 
-    connection.db.query(
-      query,
-      values,
-      (err, result) => {
-        if (err) {
-          throw err;
-        }
-      },
-      () => {
-        res.redirect("back");
+    connection.db.query(query, values, (err, result) => {
+      if (err) {
+        throw err;
       }
-    );
+      res.redirect("back");
+    });
   },
 
   getStudentProfile: (req, res) => {
