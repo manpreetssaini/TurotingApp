@@ -12,15 +12,20 @@ router.get('/', (req, res, next) => {
     let user = req.session.user;
     //if there is a session named user that means that the user is logged in. so the user gets redirected to the home page
     if (user) {
-        res.redirect('/home');
+        res.redirect('home');
         return;
     }
 
     // if not then we send the index page
-    res.redirect('/login');
+    res.redirect('login');
 });
 
 // Post login data
+
+router.get('/login', (req, res) => {
+    res.render('login')
+});
+
 router.post('/login', (req, res, next) => {
     // the data sent from the user is stored in res.body.object
     //call our login function and it will return the result (the user data from db)
@@ -31,7 +36,7 @@ router.post('/login', (req, res, next) => {
             req.session.user = result;
             req.session.opp = 1;
             // redirect the user to the homepage
-            res.redirect('/home');
+            res.redirect('home');
         } else {
             // if the login function returns null send this error message
             res.send('Username/Password incorrect! ');
@@ -39,6 +44,11 @@ router.post('/login', (req, res, next) => {
     })
 
     // Post register data
+
+    router.get('/register', (req, res) => {
+        res.render('register')
+    });
+
     router.post('/register', (req, res, next) => {
         // prepare an object containing all user inputs
         let userInput = {
@@ -56,7 +66,7 @@ router.post('/login', (req, res, next) => {
                 user.find(lastId, function (result) {
                     req.session.user = result;
                     req.session.opp = 0;
-                    res.redirect('/home');
+                    res.redirect('home');
                 });
             } else {
                 console.log('ERROR CREATING A USER ... ');
@@ -76,4 +86,4 @@ router.post('/login', (req, res, next) => {
         };
     });
 });
-module.exports = router
+module.exports = router;

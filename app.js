@@ -8,7 +8,7 @@ const authenticate = require('./server/middleware/authentication');
 require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
-const loginReg = require('./server/routes/login-register');
+const loginRouter = require('./server/routes/login-register');
 
 const app = express();
 
@@ -41,21 +41,30 @@ app.use(defaultErrorHandler);
 
 
 //routes
-app.use('/', loginReg);
-app.get('/')
+// app.get('/login', (req, res) => {
+//   res.render('login')
+// });
 
-// errors => page not found 404
-app.use((req, res, next) => {
-  let err = new Error('Page not found');
-  err.status = 404;
-  next(err);
-});
+// app.get('/register', (req, res) => {
+//   res.render('register')
+// });
+app.use('/login', loginRouter);
+app.use('/register', loginRouter);
+app.use('/', loginRouter);
 
-// handling error(send them to the client)
-app.use((req, res, next) => {
-  res.status(err.status || 500);
-  res.send(err.message);
-});
+
+// // errors => page not found 404
+// app.use((req, res, next) => {
+//   let err = new Error('Page not found');
+//   err.status = 404;
+//   next(err);
+// });
+
+// // handling error(send them to the client)
+// app.use((req, res, next) => {
+//   res.status(err.status || 500);
+//   res.send(err.message);
+// });
 
 
 app.listen(port, () => {
