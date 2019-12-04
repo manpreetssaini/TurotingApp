@@ -1,49 +1,79 @@
-module.exports = function (app, passport) {
-  app.get('/', function (req, res) {
-    res.render('index.ejs');
-  });
+const express = require('express');
+const User = require('../db/user');
+const router = express.Router();
 
-  app.get('/login', function (req, res) {
-    res.render('login.ejs', { message: req.flash(' loginMessage ') });
-  });
+//create an object from the class User in the file user.js
 
-  app.post('/login', passport.authenticate('local-login', {
-    successRedirect: '/studentDashboard',
-    failureRedirect: '/login',
-    failureFlash: true
-  }),
-    function (req, res) {
-      if (req.body.remember) {
-        req.session.cookie.maxAge = 1000 * 60 * 3;
-      } else {
-        req.session.cookie.expires = false;
-      }
-      res.redirect('/');
+const user = new User();
+
+// get the index page
+
+router.get('/', (req, res, next) => {
+    let user = req.session.user;
+    //if there is a session named user that means that the user is logged in. so the user gets redirected to the home page
+    if (user) {
+        res.redirect('/home');
+        return;
+    }
+
+    // if not then we send the index page
+    res.redirect('/login');
+});
+
+// Post login data
+router.post('/login', (req, res, next) => {
+    // the data sent from the user is stored in res.body.object
+    //call our login function and it will return the result (the user data from db)
+
+    user.login(req.body.email, req.body.password, function (result) {
+        if (result) {
+            // store the user data in a session
+            req.session.user = result;
+            req.session.opp = 1;
+            // redirect the user to the homepage
+            res.redirect('/home');
+        } else {
+            // if the login function returns null send this error message
+            res.send('Username/Password incorrect! ');
+        }
+    })
+
+    // Post register data
+    router.post('/register', (req, res, next) => {
+        // prepare an object containing all user inputs
+        let userInput = {
+            email: req.body.email,
+            fullname: req.body.fullname,
+            password: req.body.password
+        };
+
+        //call create function to create a new user if there is no error this function will return its id
+
+        user.create(userInput, function (lastId) {
+            // if the creation of the user goes well we should get an integer (id of the inserted user)
+            if (lastId) {
+                // get the user data by its id. and store it in a session
+                user.find(lastId, function (result) {
+                    req.session.user = result;
+                    req.session.opp = 0;
+                    res.redirect('/home');
+                });
+            } else {
+                console.log('ERROR CREATING A USER ... ');
+            }
+        });
     });
 
-  app.get('/register', function (req, res) {
-    res.render('register.ejs', { messagee: req.flash('signupMessage') });
-  });
+    // Get loggout page
 
-  app.post('/register', passport.authenticate('local-signup', {
-    successRedirect: '/studentDashboard',
-    failureRedirect: '/register',
-    failureFlash: true
-  }));
-
-  app.get('/studentDashboard', isLoggedIn, function (req, res) {
-    res.render('studentDashboard.ejs', {
-      user: req.user
+    router.get('/loggout', (req, res, next) => {
+        //check if session exists
+        if (req.session.user) {
+            // destry the session and redirect the user to the index page
+            req.session.destroy(function () {
+                res.redirect('/');
+            });
+        };
     });
-  });
-
-  app.get('/logout', function (req, res) {
-    req.logout();
-    res.redirect('/');
-  })
-};
-
-function isLoggedIn(req, res, next) {
-  is(req.isAuthenticated())
-  return next();
-}
+});
+module.exports = router
