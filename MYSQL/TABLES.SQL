@@ -76,6 +76,7 @@
 
 USE tutors_db;
 
+
   CREATE TABLE IF NOT EXISTS `student_request` (
     `request_id` INT NOT NULL AUTO_INCREMENT,
     `student_id` INT NOT NULL,
@@ -128,3 +129,11 @@ USE tutors_db;
         foreign key(`session_id`) references tutoring_session(session_id))
 		Engine = InnoDB DEFAULT CHARSET= latin1;
         
+
+        CREATE TABLE IF NOT EXISTS `rejected_requests` (
+	`request_id` INT NOT NULL,
+    `rejected_by` INT NOT NULL,
+    FOREIGN KEY (`request_id`) REFERENCES student_request(request_id),
+    FOREIGN KEY (`rejected_by`) REFERENCES tutors(tutor_id),
+    PRIMARY KEY (`request_id`, `rejected_by`)
+    );
