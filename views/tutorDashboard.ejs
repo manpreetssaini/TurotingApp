@@ -46,9 +46,9 @@
         </tr>
         </table>
 
-      <form action="/editProfile" method="GET">
-            <input class="hiddenId" type="radio" checked='true' name="tutorID" value="<%= tutor[0].tutor_id %>"> </input>
-            <button id="editProfile" name="editProfile" type="submit" class="btn btn-success">Edit Profile</button>
+      <form action="/editProfile" method="POST">
+        <input class="hiddenId" type="radio" checked='true' name="tutor_id" value="<%= tutor[0].tutor_id %>"> </input>
+        <button id="editProfile" type="submit" class="btn btn-success">Edit Profile</button>
       </form>
 
         <!-- upcoming_sessions -->

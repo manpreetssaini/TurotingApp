@@ -158,3 +158,11 @@ input[type="radio"]:checked ~ .reveal-if-active {
   visibility: hidden;
   size: "1";
 }
+
+#currentLocation {
+  font-size: 0.8em;
+}
+
+#city {
+  font-style: italic;
+}

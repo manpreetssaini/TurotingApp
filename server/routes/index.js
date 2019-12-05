@@ -1,10 +1,11 @@
 const router = require("express").Router();
 const { sendRequest, getStudentProfile } = require("./studentDashboard");
 const {
+  submitEdit,
+  editProfile,
   acceptRequest,
   rejectRequest,
-  getTutorProfile,
-  editProfile
+  getTutorProfile
 } = require("./tutorDashboard");
 
 module.exports = app => {
@@ -22,7 +23,8 @@ module.exports = app => {
   app.get("/tutordashboard/:id", getTutorProfile);
   app.post("/acceptRequest", acceptRequest);
   app.post("/rejectRequest", rejectRequest);
-  app.get("/editProfile", editProfile);
+  app.post("/editProfile", editProfile);
+  app.post("/submitEdit", submitEdit);
 
   app.get("/", (req, res) => {
     res.render("landing");
