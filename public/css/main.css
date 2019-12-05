@@ -8,8 +8,8 @@
 }
 body {
   font-family: "Mali", cursive;
-  /* background: var(--mainDark) !important;
-  color: var(--mainWhite) !important; */
+  background: var(--mainDark) !important;
+  color: var(--mainWhite) !important;
 }
 
 /* global */

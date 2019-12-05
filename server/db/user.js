@@ -1,7 +1,7 @@
 const pool = require('./pool');
 const bcrypt = require('bcryptjs');
 
-function User() { };
+function User() { }
 
 User.prototype = {
     // find the user data by id or username.
