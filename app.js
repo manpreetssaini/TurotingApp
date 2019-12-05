@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const express = require("express");
 const session = require("express-session");
 const bodyParser = require("body-parser");
@@ -7,6 +8,7 @@ const defaultErrorHandler = require("./server/middleware/errorHandler");
 const authenticate = require("./server/middleware/authentication");
 const cookieParser = require('cookie-parser');
 require("dotenv").config();
+const pageRouter = require('./server/routes/login-register');
 
 const app = express();
 
@@ -37,13 +39,7 @@ app.use(authenticate.parseUser);
 app.use(defaultErrorHandler);
 
 
-const pageRouter = require('./server/routes/login-register');
 app.use('/', pageRouter);
-app.use('/register', pageRouter);
-app.use('/login', pageRouter);
-
-
-
 
 app.listen(port, () => {
   console.log(`Server running on port: ${port}`);

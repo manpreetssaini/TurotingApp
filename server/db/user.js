@@ -8,7 +8,7 @@ User.prototype = {
     find: function (user = null, callback) {
         //if the user is defined
         if (user) {
-            var field = Number.isInteger(user) ? 'id' : 'username';
+            var field = Number.isInteger(user) ? 'id' : 'fullname';
         }
         //preparing sql query
         let sql = `SELECT * FROM users WHERE ${field} = ?`;

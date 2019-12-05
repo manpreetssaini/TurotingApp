@@ -77,7 +77,7 @@ router.post('/login', (req, res) => {
 
     // Get loggout page
 
-    router.get('/`loggout`', (req, res) => {
+    router.get('/loggout', (req, res) => {
         //check if session exists
         if (req.session.user) {
             // destry the session and redirect the user to the index page

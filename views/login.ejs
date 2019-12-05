@@ -1,17 +1,17 @@
 <% include partials/new_header.ejs %>
 
 <div class="container d-flex justify-content-center">
-    <form>
+    <form method="POST" action="login.ejs">
         <h1>Login</h1>
         <h3>Welcome back!</h3>
 
         <div>
             <label for="username">Username </label>
-            <input type="text" id="username" name="username" value="" />
+            <input type="text" id="username" name="username" value="username" />
         </div>
         <div>
             <label for="password">Password </label>
-            <input type="password" id="password" name="password" value="" />
+            <input type="password" id="password" name="password" value="password" />
     </form>
 </div>
 <% include partials/footer.ejs %>

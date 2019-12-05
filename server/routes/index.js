@@ -1,4 +1,5 @@
-const router = require("express").Router();
+/* eslint-disable no-undef */
+
 const { sendRequest, getStudentProfile } = require("./studentDashboard");
 const {
   acceptRequest,
@@ -6,6 +7,11 @@ const {
   getTutorProfile,
   editProfile
 } = require("./tutorDashboard");
+
+const {
+  login,
+  register
+} = require("./login-register");
 
 module.exports = app => {
   app.get("/results", (req, res) => {
@@ -24,20 +30,14 @@ module.exports = app => {
   app.post("/rejectRequest", rejectRequest);
   app.get("/editProfile", editProfile);
 
+  app.get("/register", register);
+  app.post("/register", register);
+  app.get("/login", login);
+  app.post("/login", login);
+
   app.get("/", (req, res) => {
     res.render("landing");
   });
 
-  app.get("/login", (req, res) => {
-    res.render("login");
-  });
-
-  app.get("/register", (req, res) => {
-    res.render("register");
-  });
-
-  app.post("/register", (req, res) => {
-    res.status(200);
-  });
 };
 // comment
