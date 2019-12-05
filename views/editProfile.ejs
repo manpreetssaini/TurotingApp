@@ -1,6 +1,7 @@
 <% include partials/member_header.ejs %>
 <h1>This is the edit profile page for tutor# <%=tutor_id %></h1>
 <form method="POST" action="/submitEdit">
+    <input class="hiddenId" type="radio" checked='true' name="tutorID" value="<%= tutor[0].tutor_id %>"> </input>
   <table>
     <tr>
       <td class="profileHeading">Username:</td>

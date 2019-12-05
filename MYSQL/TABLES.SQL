@@ -72,10 +72,38 @@
 --         FOREIGN KEY (session_id) REFERENES tutoring_session(session_id);
 --     )Engine = InnoDB DEFAULT CHARSET= latin1;
 
-    CREATE DATABASE tutors_db;
+CREATE DATABASE tutors_db;
 
 USE tutors_db;
 
+CREATE TABLE IF NOT EXISTS 	`students` (
+	`student_id` INT NOT NULL AUTO_INCREMENT,
+    `first_name` VARCHAR(255) NOT NULL,
+    `last_name` VARCHAR(255) NOT NULL,
+    `address` VARCHAR(255) NOT NULL,
+    `city` VARCHAR(255) NOT NULL,
+    `email` VARCHAR(255) NOT NULL,
+	`dob` DATE NOT NULL,
+	`image` varchar(255) NOT NULL,
+    `user_name` varchar(20) NOT NULL,
+    `password` varchar(24) NOT NULL,
+    PRIMARY KEY (`student_id`))
+    Engine = InnoDB DEFAULT CHARSET= latin1 AUTO_INCREMENT=1;
+
+CREATE TABLE IF NOT EXISTS 	`tutors` (
+	`tutor_id` INT NOT NULL AUTO_INCREMENT,
+    `first_name` VARCHAR(255) NOT NULL,
+    `last_name` VARCHAR(255) NOT NULL,
+    `address` VARCHAR(255) NOT NULL,
+    `city` VARCHAR(255) NOT NULL,
+    `email` VARCHAR(255) NOT NULL,
+	`dob` DATE NOT NULL,
+	`image` varchar(255) NOT NULL,
+    `speciality` varchar(255) NOT NULL,
+    `user_name` varchar(20) NOT NULL,
+    `password` varchar(24) NOT NULL,
+    PRIMARY KEY (`tutor_id`))
+    Engine = InnoDB DEFAULT CHARSET= latin1 AUTO_INCREMENT=1; 
 
   CREATE TABLE IF NOT EXISTS `student_request` (
     `request_id` INT NOT NULL AUTO_INCREMENT,
