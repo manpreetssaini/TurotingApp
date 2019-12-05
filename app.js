@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
@@ -28,11 +29,14 @@ app.use(session({
 
 
 app.set("port", process.env.port || port);
-app.set("views", __dirname + "/views");
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', __dirname + 'views');
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use('/public', express.static(path.join(__dirname, 'public')));
+
+
+
 app.use(flash());
 app.use(fileUpload());
 app.use(cookieParser());

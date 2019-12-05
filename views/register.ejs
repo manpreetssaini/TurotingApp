@@ -6,63 +6,51 @@
 
   <form id="registerForm" action="/register" method="post">
 
-    <div id="name_form" class="row d-flex justify-content-betwen">
-      <div class="col-lg-12">
-        <label for="first_name">First Name: </label>
-        <input type="text" id="first_name" name="first_name" placeholder="First Name" required />
-      </div>
-
-      <div class="col-lg-12">
-        <label for="last_name">Last Name: </label>
-        <input type="text" id="last_name" name="last_name" placeholder="Last Name" required />
-      </div>
-    </div>
-
-    <div class="row" class="row justify-content-between"">
+    <div class="row" class="row justify-content-between">
       <div class=" col-lg-12">
-      <label for="username">Username: </label>
-      <input type="text" id="username" name="user_name" placeholder="Username" required />
+        <label for="fullname">Fullname </label>
+        <input type="text" id="fullname" name="fullname" placeholder="Fullname" required />
+      </div>
+      <div class="col-lg-12">
+        <label for="email"> Email: </label>
+        <input type="email" id="email" name="email" placeholder="Email" required />
+      </div>
     </div>
-    <div class="col-lg-12">
-      <label for="email"> Email: </label>
-      <input type="email" id="email" name="email" placeholder="Email" required />
+    <div id="password_form" class="row justify-content-between">
+
+      <div class=" col-lg-12">
+        <label for="password">Password: </label>
+        <input type="password" id="password" name="password" placeholder="Password" required onkeyup='checkPassword()' ;
+          pattern=".{8,}" />
+        <span id="passwordMessage"> </span>
+      </div>
+
+      <div class="col-lg-12">
+        <div>
+          <label for="confirmPassword">Confirm Password: </label>
+          <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Password" required
+            pattern=".{8,}" onkeyup='checkPassword()' ; />
+        </div>
+      </div>
+
     </div>
-</div>
-<div id="password_form" class="row justify-content-between"">
+  </form>
 
-    <div class=" col-lg-12">
-  <label for="password">Password: </label>
-  <input type="password" id="password" name="password" placeholder="Password" required onkeyup='checkPassword()' ;
-    pattern=".{8,}" />
-  <span id="passwordMessage"> </span>
-</div>
-
-<div class="col-lg-12">
-  <div>
-    <label for="confirmPassword">Confirm Password: </label>
-    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Password" required pattern=".{8,}"
-      onkeyup='checkPassword()' ; />
-  </div>
-</div>
-
-</div>
-</form>
-
-<script>
-  let password = document.getElementById("password");
-  let confirmPassword = document.getElementById("confirmPassword");
-  password.oninvalid = function (event) {
-    event.target.setCustomValidity('Password must be at least 8 characters long');
-  }
-  function checkPassword() {
-    console.log(password.value.length)
-    if (password.value !== confirmPassword.value) {
-      document.getElementById("passwordMessage").innerHTML = 'Passwords do not match'
-    } else if (password.value.length === 0 || confirmPassword.value.length === 0) {
-      document.getElementById("passwordMessage").innerHTML = " ";
-    } else {
-      document.getElementById("passwordMessage").innerHTML = " ";
+  <script>
+    let password = document.getElementById("password");
+    let confirmPassword = document.getElementById("confirmPassword");
+    password.oninvalid = function (event) {
+      event.target.setCustomValidity('Password must be at least 8 characters long');
     }
-  }
-</script>
-<% include partials/footer.ejs %>
+    function checkPassword() {
+      console.log(password.value.length)
+      if (password.value !== confirmPassword.value) {
+        document.getElementById("passwordMessage").innerHTML = 'Passwords do not match'
+      } else if (password.value.length === 0 || confirmPassword.value.length === 0) {
+        document.getElementById("passwordMessage").innerHTML = " ";
+      } else {
+        document.getElementById("passwordMessage").innerHTML = " ";
+      }
+    }
+  </script>
+  <% include partials/footer.ejs %>

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const express = require('express');
 const User = require('../db/user');
 const router = express.Router();
@@ -8,7 +9,7 @@ const user = new User();
 
 // get the index page
 
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
     let user = req.session.user;
     //if there is a session named user that means that the user is logged in. so the user gets redirected to the home page
     if (user) {
@@ -26,7 +27,7 @@ router.get('/login', (req, res) => {
     res.render('login')
 });
 
-router.post('/login', (req, res, next) => {
+router.post('/login', (req, res) => {
     // the data sent from the user is stored in res.body.object
     //call our login function and it will return the result (the user data from db)
 
@@ -49,7 +50,7 @@ router.post('/login', (req, res, next) => {
         res.render('register')
     });
 
-    router.post('/register', (req, res, next) => {
+    router.post('/register', (req, res) => {
         // prepare an object containing all user inputs
         let userInput = {
             email: req.body.email,
@@ -76,14 +77,14 @@ router.post('/login', (req, res, next) => {
 
     // Get loggout page
 
-    router.get('/loggout', (req, res, next) => {
+    router.get('/loggout', (req, res) => {
         //check if session exists
         if (req.session.user) {
             // destry the session and redirect the user to the index page
             req.session.destroy(function () {
-                res.redirect('/');
+                res.redirect('login');
             });
-        };
+        }
     });
 });
 module.exports = router;
