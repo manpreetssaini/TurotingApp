@@ -76,8 +76,17 @@ CREATE DATABASE tutors_db;
 
 USE tutors_db;
 
+CREATE TABLE IF NOT EXISTS `users` (
+    CREATE TABLE users ( 
+	`user_id` int AUTO_INCREMENT,
+	`email` VARCHAR(50),
+	`user_name` VARCHAR(50),
+	`password` VARCHAR(128),
+	PRIMARY KEY (id))) 
+    Engine = InnoDB default charset = latin1 Auto_increment=1;
+
 CREATE TABLE IF NOT EXISTS 	`students` (
-	`student_id` INT NOT NULL AUTO_INCREMENT,
+	`student_id` INT NOT NULL,
     `first_name` VARCHAR(255) NOT NULL,
     `last_name` VARCHAR(255) NOT NULL,
     `address` VARCHAR(255) NOT NULL,
@@ -87,11 +96,15 @@ CREATE TABLE IF NOT EXISTS 	`students` (
 	`image` varchar(255) NOT NULL,
     `user_name` varchar(20) NOT NULL,
     `password` varchar(24) NOT NULL,
-    PRIMARY KEY (`student_id`))
+    PRIMARY KEY (`student_id`),
+    FOREIGN KEY (`student_id`) REFERENCES users(`user_id`),
+    FOREIGN KEY (`email`) REFERENCES users(`email`),
+    FOREIGN KEY (`password`) REFERENCES users(`password`)
+    )
     Engine = InnoDB DEFAULT CHARSET= latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS 	`tutors` (
-	`tutor_id` INT NOT NULL AUTO_INCREMENT,
+	`tutor_id` INT NOT NULL,
     `first_name` VARCHAR(255) NOT NULL,
     `last_name` VARCHAR(255) NOT NULL,
     `address` VARCHAR(255) NOT NULL,
@@ -102,7 +115,10 @@ CREATE TABLE IF NOT EXISTS 	`tutors` (
     `speciality` varchar(255) NOT NULL,
     `user_name` varchar(20) NOT NULL,
     `password` varchar(24) NOT NULL,
-    PRIMARY KEY (`tutor_id`))
+    PRIMARY KEY (`tutor_id`),
+    FOREIGN KEY (`tutor_id`) REFERENCES users(`user_id`),
+    FOREIGN KEY (`email`) REFERENCES users(`email`),
+    FOREIGN KEY (`password`) REFERENCES users(`password`))
     Engine = InnoDB DEFAULT CHARSET= latin1 AUTO_INCREMENT=1; 
 
   CREATE TABLE IF NOT EXISTS `student_request` (
