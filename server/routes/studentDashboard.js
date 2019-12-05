@@ -1,4 +1,4 @@
-const connection = require('../db/db');
+const connection = require("../db/pool");
 
 module.exports = {
     sendRequest: (req, res) => {
@@ -7,30 +7,24 @@ module.exports = {
             .slice(0, 19)
             .replace("T", " ");
         const query =
-            "INSERT INTO student_request (student_id, subject, topic, description, start_time, end_time) VALUES ( ?, ?,?,?,?,DATE_ADD(?, INTERVAL 30 MINUTE))";
+            "INSERT INTO student_request (student_id, subject, topic, description, start_time, end_time) VALUES (?, ?,?,?,?,DATE_ADD(?, INTERVAL 30 MINUTE));";
 
         const values = [
-            req.body.studentId,
+            req.body.studentID,
             req.body.subject,
             req.body.topic,
-            req.body.descriptiion,
+            req.body.description,
             String(start_time),
             String(end_time)
         ];
-        console.log(query);
+        console.log(values);
 
-        connection.db.query(
-            query,
-            values,
-            (err, result) => {
-                if (err) {
-                    throw err;
-                }
-            },
-            () => {
-                res.redirect('/studentDashboard');
+        connection.db.query(query, values, (err, result) => {
+            if (err) {
+                throw err;
             }
-        );
+            res.redirect("back");
+        });
     },
 
     getStudentProfile: (req, res) => {
@@ -48,7 +42,7 @@ module.exports = {
             const upcomingQuery =
                 "SELECT * FROM student_request WHERE student_id=" +
                 student[0].student_id +
-                " LIMIT 3";
+                " ORDER BY request_id DESC LIMIT 3";
             connection.db.query(upcomingQuery, (err, result) => {
                 if (err) {
                     throw err;
@@ -57,17 +51,17 @@ module.exports = {
                     return {
                         subject: res.subject,
                         topic: res.topic,
-                        description: res.descriptiion,
+                        description: res.description,
                         start_time: res.start_time,
                         end_time: res.end_time
                     };
                 });
-            });
-            console.log(upcomingSessions);
-            res.render('studentDashboard.ejs', {
-                student,
-                full_name,
-                upcomingSessions
+                console.log(upcomingSessions);
+                res.render("studentDashboard.ejs", {
+                    student,
+                    full_name,
+                    upcomingSessions
+                });
             });
         });
     }
