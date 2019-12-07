@@ -1,5 +1,10 @@
 const router = require("express").Router();
-const { sendRequest, getStudentProfile } = require("./studentDashboard");
+const {
+  submitStudentEdit,
+  editStudent,
+  sendRequest,
+  getStudentProfile
+} = require("./studentDashboard");
 const {
   submitEdit,
   editProfile,
@@ -19,6 +24,8 @@ module.exports = app => {
 
   app.get("/studentdashboard/:id", getStudentProfile);
   app.post("/sendRequest", sendRequest);
+  app.post("/editStudent", editStudent);
+  app.post("/submitStudentEdit", submitStudentEdit);
 
   app.get("/tutordashboard/:id", getTutorProfile);
   app.post("/acceptRequest", acceptRequest);

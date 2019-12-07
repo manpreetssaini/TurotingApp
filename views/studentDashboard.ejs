@@ -39,8 +39,11 @@
           </div>
         </table>
 
-      <button id="editProfile" type="button" class="btn btn-success">Edit Profile</button>
-      
+      <form action="/editStudent" method="POST">
+        <input class="hiddenId" type="radio" checked='true' name="student_id" value="<%= student[0].student_id %>"> </input>
+      <button id="editProfile" type="submit" class="btn btn-success">Edit Profile</button>
+      </form>
+
       <form id="searchRequest" method="POST" action="/sendRequest">
               <p> Subject: </p>
               <div class="btn-group btn-group-toggle" data-toggle="buttons">

@@ -1,6 +1,44 @@
 const connection = require("../../connection");
 
 module.exports = {
+  submitStudentEdit: (req, res) => {
+    const updateQuery =
+      "UPDATE students SET `first_name`= ?, `last_name` = ?, `city`=? WHERE (`student_id` = ?);";
+
+    connection.db.query(
+      updateQuery,
+      [
+        req.body.first_name,
+        req.body.last_name,
+        req.body.location,
+        req.body.studentID
+      ],
+      (err, result) => {
+        console.log(updateQuery);
+        if (err) {
+          throw err;
+        }
+        res.redirect("studentDashboard/" + req.body.studentID);
+      }
+    );
+  },
+
+  editStudent: (req, res) => {
+    let student_id = req.body.student_id;
+    console.log(student_id);
+
+    const editQuery = "SELECT * FROM students WHERE student_id = ?";
+
+    connection.db.query(editQuery, [student_id], (err, result) => {
+      if (err) {
+        throw err;
+      }
+      let student = result;
+      let full_name = student[0].first_name + " " + student[0].last_name;
+      res.render("editStudent", { student_id, full_name, student });
+    });
+  },
+
   sendRequest: (req, res) => {
     let start_time = new Date(req.body.date)
       .toJSON()
