@@ -92,11 +92,11 @@ module.exports = {
       let tutor = result;
       let full_name = tutor[0].first_name + " " + tutor[0].last_name;
       const upcomingQuery =
-        "SELECT * FROM student_request WHERE subject=? AND accepted IS FALSE AND start_time >= NOW() AND student_request.request_id NOT IN (SELECT request_id FROM rejected_requests WHERE rejected_by = ?) ORDER BY request_id DESC;";
+        "SELECT * FROM student_request WHERE subject=? AND accepted IS FALSE AND (city=? OR city IS NULL) AND start_time >= NOW() AND student_request.request_id NOT IN (SELECT request_id FROM rejected_requests WHERE rejected_by = ?) ORDER BY request_id DESC;";
 
       connection.db.query(
         upcomingQuery,
-        [tutor[0].speciality, tutor[0].tutor_id],
+        [tutor[0].city, tutor[0].speciality, tutor[0].tutor_id],
         (err, result) => {
           if (err) {
             throw err;

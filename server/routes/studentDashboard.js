@@ -45,11 +45,12 @@ module.exports = {
       .slice(0, 19)
       .replace("T", " ");
     const query =
-      "INSERT INTO student_request (student_id, subject, topic, description, start_time, end_time) VALUES (?, ?,?,?,?,DATE_ADD(?, INTERVAL 30 MINUTE));";
+      "INSERT INTO student_request (student_id, subject, city, topic, description, start_time, end_time) VALUES (?, ?, ?,?,?,?,DATE_ADD(?, INTERVAL 30 MINUTE));";
 
     const values = [
       req.body.studentID,
       req.body.subject,
+      req.body.location,
       req.body.topic,
       req.body.description,
       String(start_time),

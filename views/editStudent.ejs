@@ -1,4 +1,4 @@
-<% include partials/member_header.ejs %>
+<% include partials/student_header.ejs %>
 <h1>This is the edit profile page for student# <%=student_id %></h1>
 <form method="POST" action="/submitStudentEdit">
     <input class="hiddenId" type="radio" checked='true' name="studentID" value="<%= student[0].student_id %>"> </input>

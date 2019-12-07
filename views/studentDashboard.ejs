@@ -1,4 +1,4 @@
-<% include partials/member_header.ejs %>
+<% include partials/student_header.ejs %>
 
 
 <div class="container">
@@ -94,7 +94,7 @@
                       <p> Select a time and date that you would like tutoring: </p>
                       <input type="datetime-local" name="date" placeholder="Date" required> </input>
                   </div>
-                  <div id="hiddenStudentId"> 
+                  <div class="hiddenId"> 
                     <input type="text" name="studentID" value=<%= student[0].student_id%>> </input>
                   </div>
                   <button type="submit" > Send Request </button>

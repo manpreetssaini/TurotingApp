@@ -77,13 +77,13 @@ CREATE DATABASE tutors_db;
 USE tutors_db;
 
 CREATE TABLE IF NOT EXISTS `users` (
-    CREATE TABLE users ( 
 	`user_id` int AUTO_INCREMENT,
 	`email` VARCHAR(50),
 	`user_name` VARCHAR(50),
 	`password` VARCHAR(128),
-	PRIMARY KEY (id))) 
+	PRIMARY KEY (user_id)) 
     Engine = InnoDB default charset = latin1 Auto_increment=1;
+
 
 CREATE TABLE IF NOT EXISTS 	`students` (
 	`student_id` INT NOT NULL,
@@ -113,6 +113,7 @@ CREATE TABLE IF NOT EXISTS 	`tutors` (
     `speciality` varchar(255) NOT NULL,
     `user_name` varchar(20) NOT NULL,
     `password` varchar(24) NOT NULL,
+    `description` VARCHAR(100) NOT NULL,
     PRIMARY KEY (`tutor_id`),
     FOREIGN KEY (`tutor_id`) REFERENCES users(`user_id`),
     FOREIGN KEY (`email`) REFERENCES users(`email`),
@@ -122,12 +123,14 @@ CREATE TABLE IF NOT EXISTS 	`tutors` (
   CREATE TABLE IF NOT EXISTS `student_request` (
     `request_id` INT NOT NULL AUTO_INCREMENT,
     `student_id` INT NOT NULL,
+    `accepted` BOOLEAN DEFAULT 0,
     `city` VARCHAR(255) NOT NULL,
     `subject` VARCHAR(255) NOT NULL,
     `topic` VARCHAR(255) NOT NULL,
     `description` VARCHAR(8000) NOT NULL,
     `start_time` DATETIME NOT NULL,
     `end_time` DATETIME NOT NULL,
+    `message` VARCHAR (100),
     PRIMARY KEY(`request_id`),
     foreign key(`student_id`) references students(student_id))
     Engine = InnoDB DEFAULT CHARSET= latin1 AUTO_INCREMENT=1; 

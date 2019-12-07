@@ -53,7 +53,6 @@ body {
 .card {
   width: 8rem;
   border-radius: 0px;
-  background-color: #242325;
   padding: 1em;
 }
 
@@ -165,4 +164,10 @@ input[type="radio"]:checked ~ .reveal-if-active {
 
 #city {
   font-style: italic;
+}
+
+.disabled {
+  text-decoration: none;
+  color: black;
+  pointer-events: none;
 }
