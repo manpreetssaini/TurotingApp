@@ -3,19 +3,31 @@ const connection = require("../../connection");
 module.exports = {
   submitEdit: (req, res) => {
     const updateQuery =
-      "UPDATE tutors SET `user_name`= ?, `first_name`= ?, `last_name` = ?, `city`=?, `speciality`=? WHERE (`tutor_id` = ?);";
+      "UPDATE tutors SET `first_name`= ?, `last_name` = ?, `city`=?, `speciality`=? WHERE (`tutor_id` = ?);";
 
     connection.db.query(
       updateQuery,
       [
-        req.body.user_name,
         req.body.first_name,
         req.body.last_name,
         req.body.location,
         req.body.specialty,
-        req.body.tutor_id
+        req.body.tutorID
       ],
       (err, result) => {
+        console.log(
+          req.body.username +
+            " " +
+            req.body.first_name +
+            " " +
+            req.body.last_name +
+            " " +
+            req.body.location +
+            " " +
+            req.body.specialty +
+            " " +
+            req.body.tutorID
+        );
         console.log(updateQuery);
         if (err) {
           throw err;
@@ -100,7 +112,6 @@ module.exports = {
               end_time: res.end_time
             };
           });
-          //   console.log(requestedSessions);
 
           const acceptedQuery =
             "SELECT * FROM student_request INNER JOIN students ON student_request.student_id = students.student_id WHERE tutor_id = ? AND start_time >= NOW() ORDER BY start_time DESC LIMIT 3;";
