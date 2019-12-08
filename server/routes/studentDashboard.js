@@ -95,7 +95,8 @@ module.exports = {
             end_time: res.end_time
           };
         });
-        console.log(upcomingSessions);
+
+        const historyQuery = "SELECT * FROM student_request LEFT JOIN ";
         res.render("studentDashboard.ejs", {
           student,
           full_name,

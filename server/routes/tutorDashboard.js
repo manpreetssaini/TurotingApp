@@ -92,11 +92,16 @@ module.exports = {
       let tutor = result;
       let full_name = tutor[0].first_name + " " + tutor[0].last_name;
       const upcomingQuery =
-        "SELECT * FROM student_request WHERE subject=? AND accepted IS FALSE AND (city=? OR city IS NULL) AND start_time >= NOW() AND student_request.request_id NOT IN (SELECT request_id FROM rejected_requests WHERE rejected_by = ?) ORDER BY request_id DESC;";
+        "SELECT * FROM student_request WHERE subject=? AND accepted=0 AND (city=? OR tutor_id = ?) AND start_time >= NOW() AND student_request.request_id NOT IN (SELECT request_id FROM rejected_requests WHERE rejected_by = ?) ORDER BY request_id DESC;";
 
       connection.db.query(
         upcomingQuery,
-        [tutor[0].city, tutor[0].speciality, tutor[0].tutor_id],
+        [
+          tutor[0].speciality,
+          tutor[0].city,
+          tutor[0].tutor_id,
+          tutor[0].tutor_id
+        ],
         (err, result) => {
           if (err) {
             throw err;
@@ -114,7 +119,7 @@ module.exports = {
           });
 
           const acceptedQuery =
-            "SELECT * FROM student_request INNER JOIN students ON student_request.student_id = students.student_id WHERE tutor_id = ? AND start_time >= NOW() ORDER BY start_time DESC LIMIT 3;";
+            "SELECT * FROM student_request INNER JOIN students ON student_request.student_id = students.student_id WHERE accepted=1 AND tutor_id = ? AND start_time >= NOW() ORDER BY start_time DESC LIMIT 3;";
 
           connection.db.query(acceptedQuery, tutor_id, (err, result) => {
             if (err) {

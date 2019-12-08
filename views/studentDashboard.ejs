@@ -37,6 +37,11 @@
             <td class="profileHeading">Location:</td>
             <td ><%= student[0].city %></td>
           </div>
+
+          <div>
+              <td class="profileHeading" id="studentAverageRating">Average Rating:</td>
+              <td ></td>
+          </div>
         </table>
 
       <form action="/editStudent" method="POST">
@@ -113,6 +118,7 @@
                 <th>Description</th>
                 <th>Start Time </th>
                 <th> End Time </th>
+                <th> Accepted? </th>
               </tr>
               </thead>
 
@@ -122,8 +128,9 @@
                 <td><%=session.subject %></td>
                 <td><%=session.topic %></td>
                 <td><%= session.description %></td>
-                <td><%= session.start_time %>    </td>
+                <td><%= session.start_time %>  </td>
                 <td><%= session.end_time %>   </td>
+                <td>                          </td>
               </tr>
               <%  }); %>
             </tbody>
@@ -132,16 +139,16 @@
          
             <h4>History</h4>
             <tr>
-              <th>Date</th>
               <th>Tutor</th>
-              <th>Subject</th>
+              <th>Topic</th>
+              <th>Date</th>
               <th>Rating</th>
             </tr>
             <tr> 
-              <td> 11/11/2019 </td>
-              <td> Manpreet Saini </td>
-              <td> Physics </td>
-              <td>   4 stars      </td>
+              <td>  </td>
+              <td>  </td>
+              <td>  </td>
+              <td>  </td>
             </tr>
           </table>
         </div>

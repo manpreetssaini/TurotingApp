@@ -140,7 +140,7 @@ CREATE TABLE IF NOT EXISTS 	`tutors` (
 
 
     CREATE TABLE IF NOT EXISTS `student_rating` (
-    `student_rating_id` INT NOT NULL,
+    `student_rating_id` INT NOT NULL AUTO_INCREMENT,
     `rating` float NOT NULL,
     `timestamp` DATETIME NOT NULL,
     `student_id` INT NOT NULL,
@@ -165,14 +165,14 @@ CREATE TABLE IF NOT EXISTS 	`tutors` (
     -- ADD FOREIGN KEY tutor_id and session_id --
 
        CREATE TABLE IF NOT EXISTS `tutor_rating` (
-        `tutor_rating_id` INT NOT NULL,
+        `tutor_rating_id` INT NOT NULL AUTO_INCREMENT,
         `rating` float NOT NULL,
         `timestamp` DATETIME NOT NULL,
         `tutor_id` INT NOT NULL,
         `session_id` INT NOT NULL,
         PRIMARY KEY (`tutor_rating_id`),
         foreign key(`tutor_id`) references tutors(tutor_id),
-        foreign key(`session_id`) references tutoring_session(session_id))
+        foreign key(`session_id`) references student_request(request_id))
 		Engine = InnoDB DEFAULT CHARSET= latin1;
         
 
