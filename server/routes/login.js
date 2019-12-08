@@ -43,48 +43,6 @@ router.post('/login', (req, res) => {
             res.send('Username/Password incorrect! ');
         }
     })
-
-    // Post register data
-
-    router.get('/register', (req, res) => {
-        res.render('register')
-    });
-
-    router.post('/register', (req, res) => {
-        // prepare an object containing all user inputs
-        let userInput = {
-            email: req.body.email,
-            fullname: req.body.fullname,
-            password: req.body.password
-        };
-
-        //call create function to create a new user if there is no error this function will return its id
-
-        user.create(userInput, function (lastId) {
-            // if the creation of the user goes well we should get an integer (id of the inserted user)
-            if (lastId) {
-                // get the user data by its id. and store it in a session
-                user.find(lastId, function (result) {
-                    req.session.user = result;
-                    req.session.opp = 0;
-                    res.redirect('home');
-                });
-            } else {
-                console.log('ERROR CREATING A USER ... ');
-            }
-        });
-    });
-
-    // Get loggout page
-
-    router.get('/loggout', (req, res) => {
-        //check if session exists
-        if (req.session.user) {
-            // destry the session and redirect the user to the index page
-            req.session.destroy(function () {
-                res.redirect('login');
-            });
-        }
-    });
 });
+
 module.exports = router;
