@@ -13,12 +13,18 @@ const {
   getTutorProfile
 } = require("./tutorDashboard");
 
-const { filter, search, individualRequest } = require("./search");
+const {
+  filter,
+  search,
+  individualRequest,
+  submitIndividualRequest
+} = require("./search");
 
 module.exports = app => {
   app.get("/results/:id", search);
   app.post("/filter/:id", filter);
-  app.get("/individualRequest/:id", individualRequest);
+  app.get("/individualRequest/:tutorid/:studentid/:subject", individualRequest);
+  app.post("/submitIndividualRequest", submitIndividualRequest);
 
   app.get("/studentdashboard/:id", getStudentProfile);
   app.post("/sendRequest", sendRequest);
@@ -41,10 +47,6 @@ module.exports = app => {
 
   app.get("/register", (req, res) => {
     res.render("register");
-  });
-
-  app.post("/register", (req, res) => {
-    res.status(200);
   });
 };
 // comment

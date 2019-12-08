@@ -70,7 +70,7 @@
         <p>Subject: <%= tutor.speciality %></p>
         <p>Location: <%= tutor.location %></p>
         <p>Description: <%= tutor.description %></p>
-        <form method="GET" action="/individualRequest/<%= tutor.tutor_id %>" >
+        <form method="GET" action="/individualRequest/<%= tutor.tutor_id %>/<%= student_id %>/<%= tutor.speciality %>" >
             <button type="submit" class="btn btn-primary"> Book Now </button> 
         </form>
       </div>

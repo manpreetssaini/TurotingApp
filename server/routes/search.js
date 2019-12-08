@@ -1,9 +1,81 @@
 const connection = require("../../connection");
 
 module.exports = {
+  submitIndividualRequest: (req, res) => {
+    let student_id = req.body.studentID;
+    let tutor_id = req.body.tutorID;
+    let message = req.body.message;
+    let topic = req.body.topic;
+    let subject = req.body.subject;
+    let start_time = new Date(req.body.date)
+      .toJSON()
+      .slice(0, 19)
+      .replace("T", " ");
+    console.log(
+      student_id +
+        ", " +
+        tutor_id +
+        ", " +
+        message +
+        ", " +
+        topic +
+        ", " +
+        subject +
+        ", " +
+        start_time
+    );
+    const studentCityQuery = "SELECT * FROM students WHERE student_id = 2;";
+    connection.db.query(studentCityQuery, student_id, (err, result) => {
+      if (err) {
+        throw err;
+      }
+      let city = result[0].city;
+      const tutorIndividualRequestQuery =
+        "INSERT INTO student_request (student_id, tutor_id, subject, topic, description, start_time, end_time, city) VALUES (?, ?, ?, ?, ?, ?, DATE_ADD(?, INTERVAL 30 MINUTE), ?);";
+      connection.db.query(
+        tutorIndividualRequestQuery,
+        [
+          student_id,
+          tutor_id,
+          subject,
+          topic,
+          message,
+          String(start_time),
+          String(start_time),
+          city
+        ],
+        (err, result) => {
+          if (err) {
+            throw err;
+          }
+          res.redirect("../studentDashboard/" + student_id);
+        }
+      );
+    });
+  },
+
   individualRequest: (req, res) => {
-    let tutor_id = req.params.id;
-    console.log(tutor_id);
+    let tutor_id = req.params.tutorid;
+    let student_id = req.params.studentid;
+    let subject = req.params.subject;
+
+    const individualRequestQuery = "SELECT * FROM tutors WHERE tutor_id = ?";
+
+    connection.db.query(individualRequestQuery, tutor_id, (err, result) => {
+      if (err) {
+        throw err;
+      }
+      let tutor = result;
+
+      let full_name = tutor[0].first_name + " " + tutor[0].last_name;
+      res.render("individualRequest.ejs", {
+        tutor,
+        full_name,
+        student_id,
+        subject,
+        tutor_id
+      });
+    });
   },
 
   filter: (req, res) => {
