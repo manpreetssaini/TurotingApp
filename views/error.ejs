@@ -1,3 +1,11 @@
-<% include partials/member_header.ejs %>
-<p>error</p>
+<% include partials/other_header.ejs %>
+<p>Error: You must seelct at least one subject and one city</p>
+
+<button onclick="goBack()">Go Back</button>
+
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
 <% include partials/footer.ejs %>

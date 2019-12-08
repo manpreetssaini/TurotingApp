@@ -51,9 +51,9 @@ body {
 }
 
 .card {
-  width: 8rem;
+  width: 7rem;
   border-radius: 0px;
-  padding: 1em;
+  margin: 0.5em;
 }
 
 .card:hover {

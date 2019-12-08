@@ -13,10 +13,12 @@ const {
   getTutorProfile
 } = require("./tutorDashboard");
 
-const { search } = require("./search");
+const { filter, search, individualRequest } = require("./search");
 
 module.exports = app => {
-  app.get("/results", search);
+  app.get("/results/:id", search);
+  app.post("/filter/:id", filter);
+  app.get("/individualRequest/:id", individualRequest);
 
   app.get("/studentdashboard/:id", getStudentProfile);
   app.post("/sendRequest", sendRequest);
