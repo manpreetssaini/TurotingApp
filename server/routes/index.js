@@ -9,9 +9,11 @@ const {
 } = require("./tutorDashboard");
 
 const {
-  login,
+  login
+} = require("./login");
+const {
   register
-} = require("./login-register");
+} = require("./register");
 
 module.exports = app => {
   app.get("/results", (req, res) => {
