@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const {
+  submitTutorReview,
+  tutorRating,
   submitStudentEdit,
   editStudent,
   sendRequest,
@@ -26,10 +28,12 @@ module.exports = app => {
   app.get("/individualRequest/:tutorid/:studentid/:subject", individualRequest);
   app.post("/submitIndividualRequest", submitIndividualRequest);
 
-  app.get("/studentdashboard/:id", getStudentProfile);
+  app.get("/studentdashboard/:id/", getStudentProfile);
   app.post("/sendRequest", sendRequest);
   app.post("/editStudent", editStudent);
   app.post("/submitStudentEdit", submitStudentEdit);
+  app.get("/tutorRating/:id/:user_name", tutorRating);
+  app.post("/submitTutorReview", submitTutorReview);
 
   app.get("/tutordashboard/:id", getTutorProfile);
   app.post("/acceptRequest", acceptRequest);

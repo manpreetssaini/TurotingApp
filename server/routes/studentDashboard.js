@@ -1,6 +1,16 @@
 const connection = require("../../connection");
 
 module.exports = {
+  submitTutorReview: (req, res) => {
+    let submitReviewQuery = "";
+  },
+
+  tutorRating: (req, res) => {
+    let session_id = req.params.id;
+    let user_name = req.params.user_name;
+    res.render("tutorRating.ejs", { session_id, user_name });
+  },
+
   submitStudentEdit: (req, res) => {
     const updateQuery =
       "UPDATE students SET `first_name`= ?, `last_name` = ?, `city`=? WHERE (`student_id` = ?);";
@@ -81,7 +91,7 @@ module.exports = {
       const upcomingQuery =
         "SELECT * FROM student_request WHERE student_id=" +
         student[0].student_id +
-        " ORDER BY request_id DESC LIMIT 3";
+        " AND start_time >= NOW() ORDER BY accepted ASC, request_id DESC";
       connection.db.query(upcomingQuery, (err, result) => {
         if (err) {
           throw err;
@@ -92,16 +102,39 @@ module.exports = {
             topic: res.topic,
             description: res.description,
             start_time: res.start_time,
-            end_time: res.end_time
+            end_time: res.end_time,
+            accepted: res.accepted
           };
         });
 
-        const historyQuery = "SELECT * FROM student_request LEFT JOIN ";
-        res.render("studentDashboard.ejs", {
-          student,
-          full_name,
-          upcomingSessions
-        });
+        const historyQuery =
+          "SELECT * FROM student_request LEFT JOIN tutors ON student_request.tutor_id = tutors.tutor_id LEFT JOIN tutor_rating ON student_request.request_id = tutor_rating.session_id WHERE student_id = ? AND student_request.tutor_id IS NOT NULL AND start_time < NOW();";
+        connection.db.query(
+          historyQuery,
+          [student[0].student_id],
+          (err, result) => {
+            if (err) {
+              throw err;
+            }
+            const pastSessions = result.map(res => {
+              return {
+                name: res.user_name,
+                session_id: res.request_id,
+                topic: res.topic,
+                date: res.start_time,
+                rating: res.rating,
+                tutor_id: res.tutor_id
+              };
+            });
+            console.log(pastSessions[0].tutor_id);
+            res.render("studentDashboard.ejs", {
+              student,
+              full_name,
+              upcomingSessions,
+              pastSessions
+            });
+          }
+        );
       });
     });
   }
