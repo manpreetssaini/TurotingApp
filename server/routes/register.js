@@ -19,7 +19,7 @@ router.post('/register', (req, res) => {
     // prepare an object containing all user inputs
     let userInput = {
         email: req.body.email,
-        user_name: req.body.user_name,
+        username: req.body.username,
         password: req.body.password
     };
 
@@ -32,13 +32,14 @@ router.post('/register', (req, res) => {
             user.find(lastId, function (result) {
                 req.session.user = result;
                 req.session.opp = 0;
-                res.redirect('login');
+                res.redirect('/login');
             });
         } else {
             console.log('ERROR CREATING A USER ... ');
         }
     });
 });
+
 
 
 module.exports = router;

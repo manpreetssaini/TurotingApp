@@ -8,7 +8,7 @@ User.prototype = {
     find: function (user = null, callback) {
         //if the user is defined
         if (user) {
-            var field = Number.isInteger(user) ? 'id' : 'fullname';
+            var field = Number.isInteger(user) ? 'id' : 'username';
         }
         //preparing sql query
         let sql = `SELECT * FROM users WHERE ${field} = ?`;
@@ -34,14 +34,13 @@ User.prototype = {
 
         // this array will contain the values of the fields
 
-        let bind = [];
-        //loop in the attributes of the object and push the values into the bind array
-
+        var bind = [];
+        // loop in the attributes of the object and push the values into the bind array.
         for (prop in body) {
             bind.push(body[prop]);
         }
         // sql query
-        let sql = `INSERT INTO users(email, fullname, password) VALUES (?, ?, ?)`
+        let sql = `INSERT INTO users(email, username, password) VALUES (?, ?, ?)`;
         // call the query give it the sql string and the values(bind array)
         pool.query(sql, bind, function (err, result) {
             if (err)
@@ -67,6 +66,7 @@ User.prototype = {
             callback(null);
         });
     }
-}
+};
+
 
 module.exports = User;

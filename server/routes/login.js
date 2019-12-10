@@ -13,12 +13,12 @@ router.get('/', (req, res) => {
     let user = req.session.user;
     //if there is a session named user that means that the user is logged in. so the user gets redirected to the home page
     if (user) {
-        res.redirect('home');
+        res.redirect('/');
         return;
     }
 
     // if not then we send the index page
-    res.redirect('login');
+    res.redirect('/');
 });
 
 // Post login data
@@ -37,10 +37,11 @@ router.post('/login', (req, res) => {
             req.session.user = result;
             req.session.opp = 1;
             // redirect the user to the homepage
-            res.redirect('home');
+            res.redirect('edit-profile.ejs');
         } else {
             // if the login function returns null send this error message
-            res.send('Username/Password incorrect! ');
+            // res.send('Username/Password incorrect! ');
+            res.redirect('about')
         }
     })
 });
