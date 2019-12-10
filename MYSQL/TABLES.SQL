@@ -145,6 +145,7 @@ CREATE TABLE IF NOT EXISTS 	`tutors` (
     `timestamp` DATETIME NOT NULL,
     `student_id` INT NOT NULL,
     `request_id` INT NOT NULL,
+    `message` VARCHAR(255),
     PRIMARY KEY (`student_rating_id`),
     foreign key(`student_id`) references student_request(student_id),
     foreign key(`request_id`) references student_request(request_id))
@@ -170,6 +171,7 @@ CREATE TABLE IF NOT EXISTS 	`tutors` (
         `timestamp` DATETIME NOT NULL,
         `tutor_id` INT NOT NULL,
         `session_id` INT NOT NULL,
+        `message` VARCHAR(255),
         PRIMARY KEY (`tutor_rating_id`),
         foreign key(`tutor_id`) references tutors(tutor_id),
         foreign key(`session_id`) references student_request(request_id))

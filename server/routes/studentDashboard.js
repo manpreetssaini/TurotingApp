@@ -2,7 +2,11 @@ const connection = require("../../connection");
 
 module.exports = {
   submitTutorReview: (req, res) => {
-    let submitReviewQuery = "";
+    let getMemberId = "SELECT * FROM student_request WHERE request_id = ?";
+    connection.db.query(getMemberId, req.body.session_id, (err, result) => {
+      console.log(result);
+      res.redirect("/studentDashboard/2");
+    });
   },
 
   tutorRating: (req, res) => {
@@ -24,7 +28,6 @@ module.exports = {
         req.body.studentID
       ],
       (err, result) => {
-        console.log(updateQuery);
         if (err) {
           throw err;
         }
