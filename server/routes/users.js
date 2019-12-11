@@ -1,7 +1,7 @@
 const express = require('express');
 const User = require('../db/user');
 const router = express.Router();
-const passport = require('passport');
+
 
 // create an object from the class User in the file core/user.js
 const user = new User();
