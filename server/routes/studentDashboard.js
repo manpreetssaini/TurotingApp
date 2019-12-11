@@ -148,13 +148,31 @@ module.exports = {
                 tutor_id: res.tutor_id
               };
             });
-            console.log(pastSessions[0].tutor_id);
-            res.render("studentDashboard.ejs", {
-              student,
-              full_name,
-              upcomingSessions,
-              pastSessions
-            });
+            const getRatingQuery =
+              "SELECT AVG(rating) AS 'rating' FROM student_rating WHERE student_id = ? ";
+            connection.db.query(
+              getRatingQuery,
+              student[0].student_id,
+              (err, result) => {
+                let average_rating;
+                if (
+                  result[0].rating === null ||
+                  result[0].rating === undefined
+                ) {
+                  average_rating = "No reviews yet";
+                } else {
+                  average_rating = result[0].rating;
+                }
+                console.log(average_rating);
+                res.render("studentDashboard.ejs", {
+                  student,
+                  full_name,
+                  upcomingSessions,
+                  pastSessions,
+                  average_rating
+                });
+              }
+            );
           }
         );
       });
