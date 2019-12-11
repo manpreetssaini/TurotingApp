@@ -36,7 +36,7 @@ router.post('/login', (req, res, next) => {
             req.session.user = result;
             req.session.opp = 1;
             // redirect the user to the home page.
-            res.render('dashboard');
+            res.redirect('dashboard');
         } else {
             // if the login function returns null send this error message back to the user.
             res.send('Username/Password incorrect!');
@@ -94,9 +94,9 @@ router.post('/register', (req, res) => {
                 user.find(lastId, function (result) {
                     req.session.user = result;
                     req.session.opp = 0;
-                    res.redirect('dashboard');
+                    req.flash('success_msg', 'You are now registered');
+                    res.redirect('login');
                 });
-
             } else {
                 console.log('Error creating a new user ...');
 
@@ -120,5 +120,7 @@ router.get('/loggout', (req, res, next) => {
         next();
     }
 });
+
+
 
 module.exports = router;
