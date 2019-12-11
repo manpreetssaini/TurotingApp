@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('../db/user');
 const router = express.Router();
+const passport = require('passport');
 
 // create an object from the class User in the file core/user.js
 const user = new User();
@@ -36,10 +37,11 @@ router.post('/login', (req, res, next) => {
             req.session.user = result;
             req.session.opp = 1;
             // redirect the user to the home page.
-            res.redirect('dashboard');
+            res.redirect('/dashboard');
         } else {
             // if the login function returns null send this error message back to the user.
-            res.send('Username/Password incorrect!');
+            req.flash('error', 'You are not registered !!');
+            res.redirect('login');
             next();
         }
     })
@@ -109,18 +111,22 @@ router.post('/register', (req, res) => {
 
 
 
-// Get loggout page
-router.get('/loggout', (req, res, next) => {
-    // Check if the session is exist
-    if (req.session.user) {
-        // destroy the session and redirect the user to the index page.
-        req.session.destroy(function () {
-            res.redirect('login');
-        });
-        next();
-    }
+// // Get loggout page
+// router.get('/loggout', (req, res, next) => {
+//     // Check if the session is exist
+//     if (req.session.user) {
+//         // destroy the session and redirect the user to the index page.
+//         req.session.destroy(function () {
+//             res.redirect('login');
+//         });
+//         next();
+//     }
+// });
+
+router.get('/logout', (req, res) => {
+    req.logout();
+    req.flash('success_msg', 'You are logged out');
+    res.redirect('/users/login');
 });
-
-
 
 module.exports = router;

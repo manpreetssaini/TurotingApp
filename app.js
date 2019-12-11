@@ -8,12 +8,12 @@ const defaultErrorHandler = require("./server/middleware/errorHandler");
 const authenticate = require("./server/middleware/authentication");
 const cookieParser = require('cookie-parser');
 const expressLayouts = require('express-ejs-layouts');
-
-
 require("dotenv").config();
 
 
 const app = express();
+
+
 
 const PORT = process.env.PORT || 4000;
 
@@ -30,6 +30,7 @@ app.use(session({
 }));
 
 
+
 app.set('views', __dirname + '/views');
 app.use(expressLayouts);
 app.set('view engine', 'ejs');
@@ -41,6 +42,7 @@ app.use(flash());
 app.use((req, res, next) => {
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
   next();
 });
 

@@ -52,9 +52,9 @@ User.prototype = {
         });
     },
 
-    login: function (username, password, callback) {
+    login: function (email, password, callback) {
         // find the user data by his username.
-        this.find(username, function (user) {
+        this.find(email, function (user) {
             // if there is a user by this username.
             if (user) {
                 // now we check his password.
