@@ -4,8 +4,27 @@ module.exports = {
   submitTutorReview: (req, res) => {
     let getMemberId = "SELECT * FROM student_request WHERE request_id = ?";
     connection.db.query(getMemberId, req.body.session_id, (err, result) => {
-      console.log(result);
-      res.redirect("/studentDashboard/2");
+      if (err) {
+        throw err;
+      }
+      let student_id = result[0].student_id;
+      let submitTutorReviewQuery =
+        "INSERT INTO tutor_rating (session_id, tutor_id, rating, timestamp, message) VALUES (?, ?, ?, NOW(), ?);";
+      connection.db.query(
+        submitTutorReviewQuery,
+        [
+          result[0].request_id,
+          result[0].tutor_id,
+          Number(req.body.rating),
+          req.body.message
+        ],
+        (err, result) => {
+          if (err) {
+            throw err;
+          }
+          res.redirect("/studentDashboard/" + student_id);
+        }
+      );
     });
   },
 
