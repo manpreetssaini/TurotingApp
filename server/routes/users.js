@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
 });
 
 // Get home page
-router.get('/home', (req, res, next) => {
+router.get('/', (req, res, next) => {
     let user = req.session.user;
 
     if (user) {
@@ -36,7 +36,7 @@ router.post('/login', (req, res, next) => {
             req.session.user = result;
             req.session.opp = 1;
             // redirect the user to the home page.
-            res.redirect('/home');
+            res.render('dashboard');
         } else {
             // if the login function returns null send this error message back to the user.
             res.send('Username/Password incorrect!');
@@ -94,7 +94,7 @@ router.post('/register', (req, res) => {
                 user.find(lastId, function (result) {
                     req.session.user = result;
                     req.session.opp = 0;
-                    res.redirect('/home');
+                    res.redirect('dashboard');
                 });
 
             } else {
@@ -115,7 +115,7 @@ router.get('/loggout', (req, res, next) => {
     if (req.session.user) {
         // destroy the session and redirect the user to the index page.
         req.session.destroy(function () {
-            res.redirect('/');
+            res.redirect('login');
         });
         next();
     }
