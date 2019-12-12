@@ -2,9 +2,9 @@ const pool = require('./pool');
 const bcrypt = require('bcryptjs');
 
 
-function User() { }
+function Tutor() { }
 
-User.prototype = {
+Tutor.prototype = {
     // Find the user data by id or username.
     find: function (user = null, callback) {
         // if the user variable is defind
@@ -13,7 +13,7 @@ User.prototype = {
             var field = Number.isInteger(user) ? 'email' : 'username';
         }
         // prepare the sql query
-        let sql = `SELECT * FROM users WHERE ${field} = ?`;
+        let sql = `SELECT * FROM tutors WHERE ${field} = ?`;
 
 
         pool.query(sql, user, function (err, result) {
@@ -42,7 +42,7 @@ User.prototype = {
             bind.push(body[prop]);
         }
         // prepare the sql query
-        let sql = "INSERT INTO  users (email, username, password) VALUES (?, ?, ?);";
+        let sql = "INSERT INTO  tutors (email, username, password) VALUES (?, ?, ?);";
 
         // call the query give it the sql string and the values (bind array)
         pool.query(sql, bind, function (err, result) {
@@ -72,4 +72,4 @@ User.prototype = {
 
 }
 
-module.exports = User;
+module.exports = Tutor;

@@ -1,10 +1,12 @@
 const express = require('express');
-const User = require('../db/user');
+const Student = require('../db/student');
+const Tutor = require('../db/tutor');
 const router = express.Router();
 
 
 // create an object from the class User in the file core/user.js
-const user = new User();
+const student = new Student();
+const tutor = new Tutor();
 
 // Get the main page
 router.get('/', (req, res) => {
@@ -31,7 +33,7 @@ router.get('/studentlogin', (req, res) => {
 router.post('/studentlogin', (req, res, next) => {
     // The data sent from the user are stored in the req.body object.
     // call our login function and it will return the result(the user data).
-    user.login(req.body.email, req.body.password, function (result) {
+    student.login(req.body.email, req.body.password, function (result) {
         if (result) {
             // Store the user data in a session.
             req.session.user = result;
@@ -87,13 +89,13 @@ router.post('/studentregister', (req, res) => {
             email: req.body.email,
             password: req.body.password
         };
-        console.log(user);
+        console.log(student);
         // call create function. to create a new user. if there is no error this function will return it's id.
-        user.create(userInput, function (lastId) {
+        student.create(userInput, function (lastId) {
             // if the creation of the user goes well we should get an integer (id of the inserted user)
             if (lastId) {
                 // Get the user data by it's id. and store it in a session.
-                user.find(lastId, function (result) {
+                student.find(lastId, function (result) {
                     req.session.user = result;
                     req.session.opp = 0;
                     req.flash('success_msg', 'You are now registered');
@@ -117,7 +119,7 @@ router.get('/studentlogout', (req, res) => {
 });
 
 
-
+// 
 
 // TUTOR LOGIN 
 
@@ -127,17 +129,17 @@ router.get('/tutorlogin', (req, res) => {
 
 // Post Tutor login data
 router.post('/tutorlogin', (req, res, next) => {
-    // The data sent from the user are stored in the req.body object.
-    // call our login function and it will return the result(the user data).
-    user.login(req.body.email, req.body.password, function (result) {
+    // The data sent from the tutor are stored in the req.body object.
+    // call our login function and it will return the result(the tutor data).
+    tutor.login(req.body.email, req.body.password, function (result) {
         if (result) {
-            // Store the user data in a session.
-            req.session.user = result;
+            // Store the tutor data in a session.
+            req.session.tutor = result;
             req.session.opp = 1;
-            // redirect the user to the home page.
+            // redirect the tutor to the home page.
             res.redirect('/tutorDashboard');
         } else {
-            // if the login function returns null send this error message back to the user.
+            // if the login function returns null send this error message back to the tutor.
             req.flash('error', 'You are not registered !!');
             res.redirect('tutorlogin');
             next();
@@ -187,13 +189,13 @@ router.post('/tutorregister', (req, res) => {
             email: req.body.email,
             password: req.body.password
         };
-        console.log(user);
+        console.log(tutor);
         // call create function. to create a new user. if there is no error this function will return it's id.
-        user.create(userInput, function (lastId) {
+        tutor.create(userInput, function (lastId) {
             // if the creation of the user goes well we should get an integer (id of the inserted user)
             if (lastId) {
                 // Get the user data by it's id. and store it in a session.
-                user.find(lastId, function (result) {
+                tutor.find(lastId, function (result) {
                     req.session.user = result;
                     req.session.opp = 0;
                     req.flash('success_msg', 'You are now registered');
