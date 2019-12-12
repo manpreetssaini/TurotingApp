@@ -1,4 +1,6 @@
 /* eslint-disable no-undef */
+const express = require('express');
+const router = express.Router();
 
 
 const { sendRequest,
@@ -10,8 +12,6 @@ const {
   getTutorProfile,
   editProfile
 } = require("./tutorDashboard");
-
-
 
 
 
@@ -33,3 +33,22 @@ module.exports = app => {
   app.get("/editProfile", editProfile);
 };
 
+router.get('/', (req, res) => {
+  res.render('Welcome');
+});
+
+// Dashboard
+router.get('/studentdashboard', (req, res) =>
+  res.render('dashboard', {
+    // user: req.user
+  })
+);
+
+router.get('/tutordashboard', (req, res) =>
+  res.render('dashboard', {
+    // user: req.user
+  })
+);
+
+
+module.exports = router;

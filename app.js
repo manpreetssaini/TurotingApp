@@ -52,7 +52,7 @@ app.use(cookieParser());
 app.use(authenticate.parseUser);
 app.use(defaultErrorHandler);
 
-app.use('/', require('./server/routes/routes'));
+app.use('/', require('./server/routes/index'));
 app.use('/users', require('./server/routes/users'));
 
 

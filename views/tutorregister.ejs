@@ -2,9 +2,9 @@
     <div class="col-md-6 m-auto">
         <div class="card card-body">
             <h1 class="text-center mb-3">
-                <i class="fas fa-user-plus"></i> Register </h1>
+                <i class="fas fa-user-plus"></i> Tutor Registration </h1>
             <% include ./partials/messages %>
-            <form action="/users/register" method="POST">
+            <form action="/users/tutorregister" method="POST">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="username" id="username" name="username" class="form-control"
@@ -30,7 +30,7 @@
                     Register
                 </button>
             </form>
-            <p class="lead mt-4">Have An Account? <a href="/users/login">Login</a></p>
+            <p class="lead mt-4">Have An Account? <a href="/users/tutorlogin">Tutor Login</a></p>
         </div>
     </div>
 </div>
