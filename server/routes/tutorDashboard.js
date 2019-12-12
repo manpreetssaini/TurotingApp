@@ -148,13 +148,60 @@ module.exports = {
                 request_id: res.request_id
               };
             });
-            res.render("tutorDashboard.ejs", {
-              tutor,
-              tutor_id,
-              full_name,
-              requestedSessions,
-              acceptedSessions
-            });
+
+            const historyQuery =
+              "SELECT * FROM student_request LEFT JOIN students ON student_request.student_id = students.student_id LEFT JOIN student_rating ON student_request.request_id = student_rating.request_id WHERE student_request.tutor_id = 1 AND student_request.tutor_id IS NOT NULL AND start_time < NOW();";
+            connection.db.query(
+              historyQuery,
+              tutor[0].tutor_id,
+              (err, result) => {
+                if (err) {
+                  throw err;
+                }
+                const pastSessions = result.map(res => {
+                  return {
+                    name: res.user_name,
+                    session_id: res.request_id,
+                    topic: res.topic,
+                    date: res.start_time,
+                    rating: res.rating,
+                    tutor_id: res.student_id
+                  };
+                });
+                //   }
+                // );
+
+                const getRatingQuery =
+                  "SELECT AVG(rating) AS 'rating' FROM tutor_rating WHERE tutor_id = ? ";
+                connection.db.query(
+                  getRatingQuery,
+                  tutor[0].tutor_id,
+                  (err, result) => {
+                    if (err) {
+                      throw err;
+                    }
+                    let average_rating;
+                    if (
+                      result[0].rating === null ||
+                      result[0].rating === undefined
+                    ) {
+                      average_rating = "No reviews yet";
+                    } else {
+                      average_rating = result[0].rating;
+                    }
+                    res.render("tutorDashboard.ejs", {
+                      tutor,
+                      tutor_id,
+                      full_name,
+                      requestedSessions,
+                      acceptedSessions,
+                      average_rating,
+                      pastSessions
+                    });
+                  }
+                );
+              }
+            );
           });
         }
       );

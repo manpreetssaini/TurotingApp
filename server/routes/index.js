@@ -8,6 +8,8 @@ const {
   getStudentProfile
 } = require("./studentDashboard");
 const {
+  studentRating,
+  submitStudentReview,
   submitEdit,
   editProfile,
   acceptRequest,

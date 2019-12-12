@@ -45,7 +45,7 @@
           <tr>
               <div>
                   <td class="profileHeading" id="tutorAverageRating">Average Rating:</td>
-                  <td ></td>
+                  <td><%= average_rating%></td>
                 </div>
         </tr>
         </table>
@@ -129,24 +129,27 @@
             </tbody>
           </table>
         
-        <table id="completed_sessions">
-            <h4>Past Sessions</h4>
+          <h4>History</h4>
+          <table>
             <thead>
             <tr>
-              <th> Student </th>
-              <th> Topic </th>
-              <th> Date </th>
-              <th> Rating </th>
+              <th>Student</th>
+              <th>Topic</th>
+              <th>Date</th>
+              <th>Rating</th>
             </tr>
             </thead>
             <tbody>
-              <td> </td>
-              <td> </td>
-              <td> </td>
-              <td> </td>
+                <% pastSessions.forEach((session, index) => { %>
+            <tr> 
+              <td><%= session.name %>  </td>
+              <td><%= session.topic %>  </td>
+              <td><%= session.date %>  </td>
+              <td><% if(session.rating === null) {%> <form action="/tutorRating/<%= session.session_id %>/<%= session.name %>" method="GET"> <button type="submit" class="btn btn-primary"> Give Review </button> </form><%} else {%> <%= session.rating %> <% }%> </td>
+            </tr>
+            <%  }); %>
             </tbody>
-        
-        </table>
+          </table>
 
         </div>
       </div>
