@@ -1,0 +1,58 @@
+<% include partials/member_header.ejs %>
+<h1>This is the edit profile page for tutor# <%=tutor_id %></h1>
+<form method="POST" action="/submitEdit">
+    <input class="hiddenId" type="radio" checked='true' name="tutorID" value="<%= tutor[0].tutor_id %>"> </input>
+    <table>
+
+
+        <tr>
+            <td class="profileHeading">First Name</td>
+            <td><input type="text" name="first_name" value="<%= tutor[0].first_name%>"> </input></td>
+        </tr>
+
+        <tr>
+            <td class="profileHeading">Last Name</td>
+            <td><input type="text" name="last_name" value="<%= tutor[0].last_name%>"> </input></td>
+        </tr>
+
+
+        <tr>
+            <!-- location -->
+            <td class="profileHeading">Location:</td>
+
+            <td> <select name="location">
+                    <option value="Downtown Toronto"> Downtown Toronto </option>
+                    <option value="North York"> North York </option>
+                    <option value="Scarborough"> Scarborough </option>
+                    <option value="Etobicoke"> Etobicoke </option>
+                    <option value="Peel Region"> Peel Region </option>
+                    <option value="York Region"> York Region </option>
+                    <option value="Durham Region"> Durham Region </option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td id="currentLocation"> Your current location is <span id="city"> <%=tutor[0].city %> </span> </td>
+        </tr>
+
+        <tr>
+            <td class="specialtyHeading">Specialty:</td>
+            <td> <select name="specialty">
+                    <option value="math"> math </option>
+                    <option value="computer_studies"> computer studies </option>
+                    <option value="science"> science </option>
+                    <option value="English"> English </option>
+                </select>
+            </td>
+        </tr>
+
+        <tr>
+            <td id="currentLocation"> Your current specialty is <span id="city"> <%=tutor[0].speciality %> </span> </td>
+        </tr>
+
+    </table>
+    <button type="submit" class="btn btn-success"> Submit </button>
+</form>
+
+<% include partials/footer.ejs %>

@@ -1,0 +1,100 @@
+<% include partials/other_header.ejs %>
+
+<div class="container">
+    <div class="row" id="resultsPages">
+        <div class="col-lg-12">
+            <h1>Showing <%= (currentPage - 1) * 10 + 1%> - <%= (currentPage - 1) * 10 + 10%> of <%= tutors.length %>
+                results for <%= searchCriteria %></h1>
+        </div>
+        <div class="col-lg-12">
+            <form method="GET" action="<%=currentPage -1%>" class="<% if (currentPage === 1) {%>disabled<%} %>">
+                <input class="hiddenId" type="radio" name="searchCriteria" class="form-control"
+                    value=<%= searchCriteria%> checked> </input>
+                <input class="hiddenId" type="radio" name="studentID" class="form-control" value=<%= student_id%>
+                    checked> </input>
+                <button id="previous" type="submit"> Previous </button>
+            </form>
+            <% pageArray.forEach((page, index) => {%>
+            <form method="GET" action="<%= page %>" id="page<%= page %>"
+                class="<% if (currentPage === page) {%>disabled<%} %>">
+                <input class="hiddenId" type="radio" name="searchCriteria" class="form-control"
+                    value=<%= searchCriteria%> checked> </input>
+                <input class="hiddenId" type="radio" name="studentID" class="form-control" value=<%= student_id%>
+                    checked> </input>
+                <button type="submit"> <%= page %> </button>
+            </form>
+            <% }); %>
+            <form method="GET" action="<%= currentPage + 1%>"
+                class="<% if (currentPage === pageCount) {%>disabled<%} %>">
+                <input class="hiddenId" type="radio" name="searchCriteria" class="form-control"
+                    value=<%= searchCriteria%> checked> </input>
+                <input class="hiddenId" type="radio" name="studentID" class="form-control" value=<%= student_id%>
+                    checked> </input>
+                <button id="next" type="submit"> Next </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <form id="searchbar" method="POST" action="/filter/1">
+            <div>
+                <input class="hiddenId" type="radio" name="searchCriteria" class="form-control"
+                    value="<%= searchCriteria%>" checked> </input>
+            </div>
+            <div>
+                <input class="hiddenId" type="radio" name="studentID" class="form-control" value="<%= student_id %>"
+                    checked> </input>
+            </div>
+            <div id="filterSubjects">
+                <p>Subjects</p>
+                <% searchSubjects.forEach((subject, index) => { %>
+                <input type="checkbox" class="form-check-input" name="subject" value="<%= subject %>"
+                    id="filter_<%= subject %>">
+                <label class="form-check-label" for="<%= subject %>"> <%= subject %> <label>
+                        <% }); %>
+            </div>
+
+            <div id="filterRating">
+                <p>Minium Rating</p>
+                <input type="number" name="rating" min="0" max="5" required>
+            </div>
+
+            <div id="filterLocation">
+                <p> Location </p>
+                <% searchLocations.forEach((location, index) => { %>
+                <input type="checkbox" class="form-check-input" name="location" value="<%= location %>"
+                    id="filter_<%= location %>">
+                <label class="form-check-label" for="location"> <%= location %> <label>
+                        <% }); %>
+            </div>
+            <p id="searchMessage"> </p>
+            <button id="filterResults" type="submit"> Filter Results </button>
+        </form>
+
+
+
+        <% tutorsPage.forEach((tutor, index) => { %>
+        <div class="card">
+            <img src="..\public\img\profile-placeholder.png" class="card-img-top" />
+            <div class="card-body">
+                <p>Result #: <%= (currentPage - 1) * 10 + index + 1 %> </p>
+                <p><%= tutor.user_name %></p>
+                <p>Subject: <%= tutor.speciality %></p>
+                <p>Location: <%= tutor.location %></p>
+                <p>Description: <%= tutor.description %></p>
+                <form method="GET"
+                    action="/individualRequest/<%= tutor.tutor_id %>/<%= student_id %>/<%= tutor.speciality %>">
+                    <button type="submit" class="btn btn-primary"> Book Now </button>
+                </form>
+            </div>
+        </div>
+        <% }); %>
+
+    </div>
+</div>
+
+
+<script src="/public/scripts/script.js"></script>
+
+<% include partials/footer.ejs %>

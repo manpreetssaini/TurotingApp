@@ -27,7 +27,7 @@ router.get('/studentlogin', (req, res) => {
     res.render('studentlogin');
 });
 
-// Post login data
+// Post Student login data
 router.post('/studentlogin', (req, res, next) => {
     // The data sent from the user are stored in the req.body object.
     // call our login function and it will return the result(the user data).
@@ -37,7 +37,7 @@ router.post('/studentlogin', (req, res, next) => {
             req.session.user = result;
             req.session.opp = 1;
             // redirect the user to the home page.
-            res.redirect('/dashboard');
+            res.redirect('/studentDashboard');
         } else {
             // if the login function returns null send this error message back to the user.
             req.flash('error', 'You are not registered !!');
@@ -52,7 +52,7 @@ router.get('/studentregister', (req, res) => {
     res.render('studentregister');
 });
 
-// Post register data
+// Post Student register data
 router.post('/studentregister', (req, res) => {
     const { username, email, password, password2 } = req.body;
     let errors = [];
@@ -110,30 +110,22 @@ router.post('/studentregister', (req, res) => {
 });
 
 
-
-// // Get loggout page
-// router.get('/loggout', (req, res, next) => {
-//     // Check if the session is exist
-//     if (req.session.user) {
-//         // destroy the session and redirect the user to the index page.
-//         req.session.destroy(function () {
-//             res.redirect('login');
-//         });
-//         next();
-//     }
-// });
-
 router.get('/studentlogout', (req, res) => {
     req.logout();
     req.flash('success_msg', 'You are logged out');
     res.redirect('/users/studentlogin');
 });
 
+
+
+
+// TUTOR LOGIN 
+
 router.get('/tutorlogin', (req, res) => {
     res.render('tutorlogin');
 });
 
-// Post login data
+// Post Tutor login data
 router.post('/tutorlogin', (req, res, next) => {
     // The data sent from the user are stored in the req.body object.
     // call our login function and it will return the result(the user data).
@@ -143,7 +135,7 @@ router.post('/tutorlogin', (req, res, next) => {
             req.session.user = result;
             req.session.opp = 1;
             // redirect the user to the home page.
-            res.redirect('/dashboard');
+            res.redirect('/tutorDashboard');
         } else {
             // if the login function returns null send this error message back to the user.
             req.flash('error', 'You are not registered !!');
@@ -154,11 +146,13 @@ router.post('/tutorlogin', (req, res, next) => {
 
 });
 
+// TUTOR REGISTRATION
+
 router.get('/tutorregister', (req, res) => {
     res.render('tutorregister');
 });
 
-// Post register data
+// Post Tutor register data
 router.post('/tutorregister', (req, res) => {
     const { username, email, password, password2 } = req.body;
     let errors = [];
@@ -216,18 +210,6 @@ router.post('/tutorregister', (req, res) => {
 });
 
 
-
-// // Get loggout page
-// router.get('/loggout', (req, res, next) => {
-//     // Check if the session is exist
-//     if (req.session.user) {
-//         // destroy the session and redirect the user to the index page.
-//         req.session.destroy(function () {
-//             res.redirect('login');
-//         });
-//         next();
-//     }
-// });
 
 router.get('/tutorlogout', (req, res) => {
     req.logout();
