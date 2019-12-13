@@ -1,0 +1,10 @@
+<% include partials/other_header.ejs %>
+<h1>Write a review for  <%= user_name %></h1>
+
+<form method="POST" action="../../submitStudentReview">
+    <input class="hiddenId" type="radio" checked='true' name="session_id" value="<%= session_id %>"> </input>
+    <input type="text" name="message" placeholder="Leave a message for the student" value=""> </input>
+    <input type="number" min="0" max="5" name="rating" placeholder="Score: 1 to 5" required> </input>
+    <button type="submit" class="btn btn-primary"> Submit </button>
+</form>
+<% include partials/footer.ejs %>

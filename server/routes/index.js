@@ -42,6 +42,8 @@ module.exports = app => {
   app.post("/rejectRequest", rejectRequest);
   app.post("/editProfile", editProfile);
   app.post("/submitEdit", submitEdit);
+  app.get("/studentRating/:id/:user_name", studentRating);
+  app.post("/submitStudentReview", submitStudentReview);
 
   app.get("/", (req, res) => {
     res.render("landing");

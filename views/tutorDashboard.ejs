@@ -145,7 +145,7 @@
               <td><%= session.name %>  </td>
               <td><%= session.topic %>  </td>
               <td><%= session.date %>  </td>
-              <td><% if(session.rating === null) {%> <form action="/tutorRating/<%= session.session_id %>/<%= session.name %>" method="GET"> <button type="submit" class="btn btn-primary"> Give Review </button> </form><%} else {%> <%= session.rating %> <% }%> </td>
+              <td><% if(session.rating === null) {%> <form action="/studentRating/<%= session.session_id %>/<%= session.name %>" method="GET"> <button type="submit" class="btn btn-primary"> Give Review </button> </form><%} else {%> <%= session.rating %> <% }%> </td>
             </tr>
             <%  }); %>
             </tbody>

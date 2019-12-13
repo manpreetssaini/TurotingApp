@@ -1,6 +1,38 @@
 const connection = require("../../connection");
 
 module.exports = {
+  submitStudentReview: (req, res) => {
+    let getMemberId = "SELECT * FROM student_request WHERE request_id = ?";
+    connection.db.query(getMemberId, req.body.session_id, (err, result) => {
+      if (err) {
+        throw err;
+      }
+      let tutor_id = result[0].tutor_id;
+      let submitStudentReviewQuery =
+        "INSERT INTO student_rating (request_id, student_id, rating, timestamp, message) VALUES (?, ?, ?, NOW(), ?);";
+      connection.db.query(
+        submitStudentReviewQuery,
+        [
+          result[0].request_id,
+          result[0].student_id,
+          Number(req.body.rating),
+          req.body.message
+        ],
+        (err, result) => {
+          if (err) {
+            throw err;
+          }
+          res.redirect("/tutorDashboard/" + tutor_id);
+        }
+      );
+    });
+  },
+
+  studentRating: (req, res) => {
+    let session_id = req.params.id;
+    let user_name = req.params.user_name;
+    res.render("studentRating.ejs", { session_id, user_name });
+  },
   submitEdit: (req, res) => {
     const updateQuery =
       "UPDATE tutors SET `first_name`= ?, `last_name` = ?, `city`=?, `speciality`=? WHERE (`tutor_id` = ?);";
@@ -150,7 +182,7 @@ module.exports = {
             });
 
             const historyQuery =
-              "SELECT * FROM student_request LEFT JOIN students ON student_request.student_id = students.student_id LEFT JOIN student_rating ON student_request.request_id = student_rating.request_id WHERE student_request.tutor_id = 1 AND student_request.tutor_id IS NOT NULL AND start_time < NOW();";
+              "SELECT student_request.request_id, students.user_name, student_request.topic, student_request.start_time, student_rating.rating, student_request.student_id FROM student_request LEFT JOIN students ON student_request.student_id = students.student_id LEFT JOIN student_rating ON student_request.request_id = student_rating.request_id WHERE student_request.tutor_id = ? AND student_request.tutor_id IS NOT NULL AND start_time < NOW();";
             connection.db.query(
               historyQuery,
               tutor[0].tutor_id,
@@ -165,11 +197,9 @@ module.exports = {
                     topic: res.topic,
                     date: res.start_time,
                     rating: res.rating,
-                    tutor_id: res.student_id
+                    student_id: res.student_id
                   };
                 });
-                //   }
-                // );
 
                 const getRatingQuery =
                   "SELECT AVG(rating) AS 'rating' FROM tutor_rating WHERE tutor_id = ? ";
