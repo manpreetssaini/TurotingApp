@@ -144,24 +144,11 @@ router.post("/tutorlogin", (req, res, next) => {
   tutor.login(req.body.email, req.body.password, function(result) {
     if (result) {
       // Store the tutor data in a session.
-      req.session.tutor = result;
+      req.session.user = result;
       req.session.opp = 1;
-      const tutorIDQuery = "SELECT * FROM tutors WHERE email = ?;";
-      connection.db.query(tutorIDQuery, req.body.email, (err, result) => {
-        if (err) {
-          throw err;
-        }
-        const tutorInfo = result.map(res => {
-          return {
-            tutor_id: res.tutor_id,
-            email: res.email,
-            user_name: res.user_name,
-            city: res.city
-          };
-        });
-        console.log(tutorInfo); // redirect the tutor to the home page.
-        res.redirect("/tutordashboard/" + tutorInfo[0].tutor_id);
-      });
+
+      console.log(result);
+      res.redirect("/tutordashboard/" + req.session.user.tutor_id);
     } else {
       // if the login function returns null send this error message back to the tutor.
       req.flash("error", "You are not registered !!");
