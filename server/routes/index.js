@@ -26,9 +26,12 @@ const {
   submitIndividualRequest
 } = require("./search");
 
-const { verifyIdentity } = require("./helpers");
+const { verifyIdentity, tutorlogout, studentlogout } = require("./helpers");
 
 module.exports = app => {
+  app.get("/tutorlogout", tutorlogout);
+  app.get("/studentlogout", studentlogout);
+
   app.get("/results/:id", search);
   app.post("/filter/:id", filter);
   app.get("/individualRequest/:tutorid/:studentid/:subject", individualRequest);
