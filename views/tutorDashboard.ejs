@@ -12,8 +12,10 @@
                 <!-- last_login -->
             </p>
             <h2>Tutor Profile</h2>
+        </div>
 
-            <!-- username -->
+        <!-- username -->
+        <div>
             <table>
                 <tr>
                     <td class="profileHeading"> Username:</td>
@@ -49,23 +51,24 @@
                     </div>
                 </tr>
             </table>
-
-            <form action="/editProfile" method="POST">
-                <input class="hiddenId" type="radio" checked='true' name="tutor_id" value="<%= tutor[0].tutor_id %>">
-                </input>
-                <button id="editProfile" type="submit" class="btn btn-success">Edit Profile</button>
-            </form>
-
-
         </div>
 
-        <!-- <form action="/tutorlogout" method="GET">
-            <button type="submit" class="btn btn-primary"> Logout </button>
-        </form> -->
-        <!-- upcoming_sessions -->
+        <form action="/editProfile" method="POST">
+            <input class="hiddenId" type="radio" checked='true' name="tutor_id" value="<%= tutor[0].tutor_id %>">
+            </input>
+            <button id="editProfile" type="submit" class="btn btn-success">Edit Profile</button>
+        </form>
+
+
     </div>
 
+    <!-- <form action="/tutorlogout" method="GET">
+            <button type="submit" class="btn btn-primary"> Logout </button>
+        </form> -->
+    <!-- upcoming_sessions -->
 </div>
+
+
 <div class="col-lg-6">
     <div id="requested_sessions">
         <h3 id="requestedHeading">Requested Sessions</h3>
