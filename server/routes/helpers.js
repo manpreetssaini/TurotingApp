@@ -23,7 +23,7 @@ module.exports = {
     ) {
       next();
     } else {
-      res.redirect("/");
+      res.render("permissionError");
     }
   },
 
