@@ -22,9 +22,6 @@ CREATE TABLE IF NOT EXISTS 	`students` (
     `user_name` varchar(20) NOT NULL,
     `password` varchar(255) NOT NULL,
     PRIMARY KEY (`student_id`),
-    FOREIGN KEY (`student_id`) REFERENCES users(`user_id`),
-    FOREIGN KEY (`email`) REFERENCES users(`email`),
-    FOREIGN KEY (`password`) REFERENCES users(`password`)
     )
     Engine = InnoDB DEFAULT CHARSET= latin1 AUTO_INCREMENT=1;
 
@@ -40,10 +37,7 @@ CREATE TABLE IF NOT EXISTS 	`tutors` (
     `user_name` varchar(30) NOT NULL,
     `password` varchar(255) NOT NULL,
     `description` VARCHAR(255)  NULL,
-    PRIMARY KEY (`tutor_id`),
-    FOREIGN KEY (`tutor_id`) REFERENCES users(`user_id`),
-    FOREIGN KEY (`email`) REFERENCES users(`email`),
-    FOREIGN KEY (`password`) REFERENCES users(`password`))
+    PRIMARY KEY (`tutor_id`)
     Engine = InnoDB DEFAULT CHARSET= latin1 AUTO_INCREMENT=1; 
 
   CREATE TABLE IF NOT EXISTS `student_request` (

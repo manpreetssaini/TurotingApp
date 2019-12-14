@@ -54,16 +54,16 @@ module.exports = {
       (err, result) => {
         console.log(
           req.body.username +
-            " " +
-            req.body.first_name +
-            " " +
-            req.body.last_name +
-            " " +
-            req.body.location +
-            " " +
-            req.body.specialty +
-            " " +
-            req.body.tutorID
+          " " +
+          req.body.first_name +
+          " " +
+          req.body.last_name +
+          " " +
+          req.body.location +
+          " " +
+          req.body.specialty +
+          " " +
+          req.body.tutorID
         );
         console.log(updateQuery);
         if (err) {

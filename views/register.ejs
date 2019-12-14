@@ -1,119 +1,85 @@
-<% include partials/others_header.ejs %>
-
 <div class="container">
   <h1>Sign up</h1>
   <h3>It's easy. And free</h3>
   <form id="registerForm" action="/register" method="post">
 
 
-    <div class="row"  class="row justify-content-between"">
-      <div class="col-lg-6">
-        <label for="username">Username: </label>
-        <input
-          type="text"
-          id="username"
-          name="user_name"
-          placeholder="Input username"
-          required
-        />
-      </div>
-      <div class="col-lg-6">
-        <label for="email"> Email: </label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required />
-      </div>
+    <div class="row" class="row justify-content-between"">
+      <div class=" col-lg-6">
+      <label for="username">Username: </label>
+      <input type="text" id="username" name="user_name" placeholder="Input username" required />
     </div>
-
-    <div id="password_form" class="row justify-content-between"">
-
     <div class="col-lg-6">
-      <label for="password">Password: </label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        placeholder="Input password (minimum 8 characters long)"
-        required
-        onkeyup = 'checkPassword()';
-        pattern=".{8,}"
-      />
-      <span id="passwordMessage"> </span>
+      <label for="email"> Email: </label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required />
     </div>
+</div>
 
-    <div class="col-lg-6">
-      <div>
-        <label for="confirmPassword">Confirm Password: </label>
-        <input
-          type="password"
-          id="confirmPassword"
-          name="confirmPassword"
-          placeholder="Input password (minimum 8 characters long)"
-          required
-          pattern=".{8,}"
-          onkeyup = 'checkPassword()';
-        />
-      </div>
-    </div>
+<div id="password_form" class="row justify-content-between"">
+
+    <div class=" col-lg-6">
+  <label for="password">Password: </label>
+  <input type="password" id="password" name="password" placeholder="Input password (minimum 8 characters long)" required
+    onkeyup='checkPassword()' ; pattern=".{8,}" />
+  <span id="passwordMessage"> </span>
+</div>
+
+<div class="col-lg-6">
+  <div>
+    <label for="confirmPassword">Confirm Password: </label>
+    <input type="password" id="confirmPassword" name="confirmPassword"
+      placeholder="Input password (minimum 8 characters long)" required pattern=".{8,}" onkeyup='checkPassword()' ; />
+  </div>
+</div>
+
+</div>
+<div id="name_form" class="row d-flex justify-content-betwen">
+  <div class="col-lg-6">
+    <label for="first_name">First Name: </label>
+    <input type="text" id="first_name" name="first_name" placeholder="First Name" required />
+  </div>
+
+  <div class="col-lg-6">
+    <label for="last_name">Last Name: </label>
+    <input type="text" id="last_name" name="last_name" placeholder="Last Name" required />
+  </div>
+</div>
+
+
+
+
+<div class="col-lg-4">
+  <label for="location">Location: </label>
+  <select name="location">
+    <option value="Downtown Toronto"> Downtown Toronto </option>
+    <option value="North York"> North York </option>
+    <option value="Scarborough"> Scarborough </option>
+    <option value="Etobicoke"> Etobicoke </option>
+    <option value="Peel Region"> Peel Region </option>
+    <option value="York Region"> York Region </option>
+    <option value="Durham Region"> Durham Region </option>
+  </select>
+</div>
+
+<div class="form-check form-check-inline col-lg-6">
+  <input name="memberCategory" type="radio" class="form-check-input" id="tutorCategory">
+  <label class="form-check-label col-lg-4" for="tutorCategory"> I am a tutor </label>
+  <div class="reveal-if-active">
 
   </div>
-    <div id="name_form" class="row d-flex justify-content-betwen">
-      <div class="col-lg-6">
-        <label for="first_name">First Name: </label>
-        <input
-          type="text"
-          id="first_name"
-          name="first_name"
-          placeholder="First Name"
-          required
-        />
-      </div>
 
-      <div class="col-lg-6">
-        <label for="last_name">Last Name: </label>
-        <input
-          type="text"
-          id="last_name"
-          name="last_name"
-          placeholder="Last Name"
-          required
-        />
-      </div>
+  <div class="form-check form-check-inline col-lg-6">
+    <input name="memberCategory" type="radio" class="form-check-input" id="studentCategory">
+    <label class="form-check-label col-lg-4" for="studentCategory"> I am student </label>
+    <div class="reveal-if-active">
+      <p> Enter your date of birth. You must be 13 years old or older to use this site. </p>
+      <label for="DOB"> Date of Birth: </label>
+      <input type="date" id="DOB" name="DOB" placeholder="DD/MM/YY" required />
     </div>
+  </div>
 
 
-
-
-      <div class="col-lg-4">
-          <label for="location">Location: </label>
-        <select name="location">
-          <option value="Downtown Toronto"> Downtown Toronto </option>
-          <option value="North York"> North York </option>
-          <option value="Scarborough"> Scarborough </option>
-          <option value="Etobicoke"> Etobicoke </option>
-          <option value="Peel Region"> Peel Region </option>
-          <option value="York Region"> York Region </option>
-          <option value="Durham Region"> Durham Region </option>
-        </select>
-      </div>
-
-      <div class="form-check form-check-inline col-lg-6">
-          <input name="memberCategory" type="radio" class="form-check-input" id="tutorCategory">
-          <label class="form-check-label col-lg-4" for="tutorCategory"> I am a tutor </label>
-        <div class="reveal-if-active">
-    
-      </div>
-
-      <div class="form-check form-check-inline col-lg-6">
-          <input name="memberCategory" type="radio" class="form-check-input" id="studentCategory">
-          <label class="form-check-label col-lg-4" for="studentCategory"> I am student </label>
-          <div class="reveal-if-active">
-              <p> Enter your date of birth.  You must be 13 years old or older to use this site. </p>
-              <label for="DOB"> Date of Birth: </label>
-              <input type="date" id="DOB" name="DOB" placeholder="DD/MM/YY" required/>
-          </div>
-        </div>
-    
-
-      <!-- <div class="col-lg-4">
+  <!-- <div class="col-lg-4">
         <label for="grade">Grade: </label>
         <input
           type="number"
@@ -125,9 +91,9 @@
           required
         />
       </div> -->
-     -->
+  -->
 
-    <!-- <div>
+  <!-- <div>
       <fieldset>
         <legend>
           Choose your subjects (Check all subjects that you would like tutoring
@@ -241,18 +207,17 @@
   let confirmPassword = document.getElementById("confirmPassword");
 
   password.oninvalid = function (event) {
-  event.target.setCustomValidity('Password must be at least 8 characters long');
+    event.target.setCustomValidity('Password must be at least 8 characters long');
   }
 
   function checkPassword() {
     console.log(password.value.length)
     if (password.value !== confirmPassword.value) {
-        document.getElementById("passwordMessage").innerHTML = 'Passwords do not match'
-    } else if (password.value.length === 0 || confirmPassword.value.length === 0 ) {
+      document.getElementById("passwordMessage").innerHTML = 'Passwords do not match'
+    } else if (password.value.length === 0 || confirmPassword.value.length === 0) {
       document.getElementById("passwordMessage").innerHTML = " ";
     } else {
       document.getElementById("passwordMessage").innerHTML = " ";
     }
   }
 </script>
-<% include partials/footer.ejs %>
