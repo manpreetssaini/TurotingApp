@@ -25,5 +25,19 @@ module.exports = {
     } else {
       res.redirect("/");
     }
+  },
+
+  tutorlogout: (req, res) => {
+    req.session.user = null;
+    // req.logout();
+    req.flash("success_msg", "You are logged out");
+    res.redirect("/users/tutorlogin");
+  },
+
+  studentlogout: (req, res) => {
+    req.session.user = null;
+    // req.logout();
+    req.flash("success_msg", "You are logged out");
+    res.redirect("/users/studentlogin");
   }
 };

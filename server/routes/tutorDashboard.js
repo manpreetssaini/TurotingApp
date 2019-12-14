@@ -69,7 +69,7 @@ module.exports = {
         if (err) {
           throw err;
         }
-        res.redirect("tutorDashboard/" + req.body.tutorID);
+        res.redirect("tutordashboard/" + req.body.tutorID);
       }
     );
   },

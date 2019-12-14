@@ -8,6 +8,7 @@ const defaultErrorHandler = require("./server/middleware/errorHandler");
 const authenticate = require("./server/middleware/authentication");
 const cookieParser = require("cookie-parser");
 const expressLayouts = require("express-ejs-layouts");
+
 require("dotenv").config();
 
 const app = express();
