@@ -1,0 +1,11 @@
+<% include partials/other_header.ejs %>
+<p>Error: You are not authorized to view this page.</p>
+
+<button onclick="goBack()">Go Back</button>
+
+<script>
+  function goBack() {
+    window.history.back();
+  }
+</script>
+<% include partials/footer.ejs %>
