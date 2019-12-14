@@ -29,7 +29,7 @@ app.use(
 );
 
 app.set("views", __dirname + "/views");
-// app.use(expressLayouts);
+app.use(expressLayouts);
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
