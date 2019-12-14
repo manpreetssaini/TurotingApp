@@ -44,6 +44,10 @@
           </div>
         </table>
 
+        <form action="/studentlogout" method="GET">
+          <button type="submit" class="btn btn-primary"> Logout </button>
+        </form>
+
       <form action="/editStudent" method="POST">
         <input class="hiddenId" type="radio" checked='true' name="student_id" value="<%= student[0].student_id %>"> </input>
       <button id="editProfile" type="submit" class="btn btn-success">Edit Profile</button>
