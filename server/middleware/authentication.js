@@ -1,7 +1,7 @@
 'use strict';
 
-function parseUser(req, res, next){
-    if(req.session.username === undefined || req.session.username === null){
+function parseUser(req, res, next) {
+    if (req.session.username === undefined || req.session.username === null) {
         req.session.user = null;
     } else {
         console.log(`${req.session.username}\'s session is active`)

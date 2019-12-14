@@ -1,83 +1,9 @@
--- CREATE DATABASE tutors_db;
--- USE tutors_db;
-
--- CREATE TABLE IF NOT EXISTS 	`students` (
--- 	`student_id` INT NOT NULL AUTO_INCREMENT,
---     `first_name` VARCHAR(255) NOT NULL,
---     `last_name` VARCHAR(255) NOT NULL,
---     `address` VARCHAR(255) NOT NULL,
---     `city` VARCHAR(255) NOT NULL,
---     `email` VARCHAR(255) NOT NULL,
--- 	`dob` DATE NOT NULL,
--- 	`image` varchar(255) NOT NULL,
---     `user_name` varchar(20) NOT NULL,
---     `password` varchar(24) NOT NULL,
---     PRIMARY KEY (`student_id`))
---     Engine = InnoDB DEFAULT CHARSET= latin1 AUTO_INCREMENT=1;
-
--- CREATE TABLE IF NOT EXISTS 	`tutors` (
--- 	`tutor_id` INT NOT NULL AUTO_INCREMENT,
---     `first_name` VARCHAR(255) NOT NULL,
---     `last_name` VARCHAR(255) NOT NULL,
---     `address` VARCHAR(255) NOT NULL,
---     `city` VARCHAR(255) NOT NULL,
---     `email` VARCHAR(255) NOT NULL,
--- 	`dob` DATE NOT NULL,
--- 	`image` varchar(255) NOT NULL,
---     `speciality` varchar(255) NOT NULL,
---     `user_name` varchar(20) NOT NULL,
---     `password` varchar(24) NOT NULL,
---     PRIMARY KEY (`tutor_id`))
---     Engine = InnoDB DEFAULT CHARSET= latin1 AUTO_INCREMENT=1; 
- 
--- -- add FOREIGN KEY student_id -- 
---     CREATE TABLE IF NOT EXISTS `student_request` (
---     `request_id` INT NOT NULL AUTO_INCREMENT,
---     `subject` VARCHAR(255) NOT NULL,
---     `topic` VARCHAR(255) NOT NULL,
---     `description` VARCHAR(8000) NOT NULL,
---     `session_length` TIME NOT NULL,
---     PRIMARY KEY(`request_id`))
---     Engine = InnoDB DEFAULT CHARSET= latin1 AUTO_INCREMENT=1; 
-
--- -- ADD FOREIGN KEY student_id and request_id --
-
---     CREATE TABLE IF NOT EXISTS `student_rating` (
---         `student_rating_id` INT NOT NULL AUTO_INCREMENT,
---         `rating` float NOT NULL,
---         `timestamp` time NOT NULL,
---         PRIMARY KEY (`student_rating_id`),
---         FOREIGN KEY (student_id) REFERENCES students(student_id),
---         FOREIGN KEY (request_id) REFERENCES student_request(request_id)
---     )Engine = InnoDB DEFAULT CHARSET= latin1;
-
--- -- ADD FOREIGN KEY student_id and tutor_id --
-
---     CREATE TABLE IF NOT EXISTS `tutoring_session` (
---         `session_id` INT NOT NULL AUTO_INCREMENT,
---         `session_date` DATE NOT NULL,
---         PRIMARY KEY (`session_id`),
---         FOREIGN KEY (student_id) REFERENCES students(student_id),
---         FOREIGN KEY (tutor_id) REFERENCES tutors(tutor_id)
---     ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---     -- ADD FOREIGN KEY tutor_id and session_id --
-
---     CREATE TABLE IF NOT EXISTS `tutor_rating` (
---         `tutor_rating_id` INT NOT NULL AUTO_INCREMENT,
---         `rating` float NOT NULL,
---         `timestamp` time NOT NULL,
---         PRIMARY KEY (`tutor_rating_id`),
---         FOREIGN KEY (tutor_id) REFERENCES tutors(tutor_id),
---         FOREIGN KEY (session_id) REFERENES tutoring_session(session_id);
---     )Engine = InnoDB DEFAULT CHARSET= latin1;
-
 CREATE DATABASE tutors_db;
 
 USE tutors_db;
 
 CREATE TABLE IF NOT EXISTS `users` (
-	`user_id` int AUTO_INCREMENT,
+	`user_id` int(11) AUTO_INCREMENT,
 	`email` VARCHAR(50),
 	`user_name` VARCHAR(50),
 	`password` VARCHAR(128),
@@ -86,15 +12,15 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 
 CREATE TABLE IF NOT EXISTS 	`students` (
-	`student_id` INT NOT NULL,
-    `first_name` VARCHAR(255) NOT NULL,
-    `last_name` VARCHAR(255) NOT NULL,
-    `city` VARCHAR(255) NOT NULL,
+	`student_id` INT NOT NULL AUTO_INCREMENT,
+    `first_name` VARCHAR(255)  NULL,
+    `last_name` VARCHAR(255)  NULL,
+    `city` VARCHAR(255)  NULL,
     `email` VARCHAR(255) NOT NULL,
-	`dob` DATE NOT NULL,
-	`image` varchar(255) NOT NULL,
+	`dob` DATE  NULL,
+	`image` varchar(255)  NULL,
     `user_name` varchar(20) NOT NULL,
-    `password` varchar(24) NOT NULL,
+    `password` varchar(255) NOT NULL,
     PRIMARY KEY (`student_id`),
     FOREIGN KEY (`student_id`) REFERENCES users(`user_id`),
     FOREIGN KEY (`email`) REFERENCES users(`email`),
@@ -103,17 +29,17 @@ CREATE TABLE IF NOT EXISTS 	`students` (
     Engine = InnoDB DEFAULT CHARSET= latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE IF NOT EXISTS 	`tutors` (
-	`tutor_id` INT NOT NULL,
-    `first_name` VARCHAR(255) NOT NULL,
-    `last_name` VARCHAR(255) NOT NULL,
-    `city` VARCHAR(255) NOT NULL,
+	`tutor_id` INT NOT NULL AUTO_INCREMENT,
+    `first_name` VARCHAR(255)  NULL,
+    `last_name` VARCHAR(255)  NULL,
+    `city` VARCHAR(255)  NULL,
     `email` VARCHAR(255) NOT NULL,
-	`dob` DATE NOT NULL,
-	`image` varchar(255) NOT NULL,
-    `speciality` varchar(255) NOT NULL,
-    `user_name` varchar(20) NOT NULL,
-    `password` varchar(24) NOT NULL,
-    `description` VARCHAR(100) NOT NULL,
+	`dob` DATE NULL,
+	`image` varchar(255)  NULL,
+    `speciality` varchar(255)  NULL,
+    `user_name` varchar(30) NOT NULL,
+    `password` varchar(255) NOT NULL,
+    `description` VARCHAR(255)  NULL,
     PRIMARY KEY (`tutor_id`),
     FOREIGN KEY (`tutor_id`) REFERENCES users(`user_id`),
     FOREIGN KEY (`email`) REFERENCES users(`email`),
@@ -123,6 +49,7 @@ CREATE TABLE IF NOT EXISTS 	`tutors` (
   CREATE TABLE IF NOT EXISTS `student_request` (
     `request_id` INT NOT NULL AUTO_INCREMENT,
     `student_id` INT NOT NULL,
+    `tutor_id` INT, 
     `accepted` BOOLEAN DEFAULT 0,
     `city` VARCHAR(255) NOT NULL,
     `subject` VARCHAR(255) NOT NULL,
@@ -132,7 +59,8 @@ CREATE TABLE IF NOT EXISTS 	`tutors` (
     `end_time` DATETIME NOT NULL,
     `message` VARCHAR (100),
     PRIMARY KEY(`request_id`),
-    foreign key(`student_id`) references students(student_id))
+    foreign key(`student_id`) references students(student_id),
+    foreign key(`tutor_id`) references tutors(tutor_id))
     Engine = InnoDB DEFAULT CHARSET= latin1 AUTO_INCREMENT=1; 
 
 
@@ -153,17 +81,18 @@ CREATE TABLE IF NOT EXISTS 	`tutors` (
 
 -- ADD FOREIGN KEY student_id and tutor_id --
 
-    CREATE TABLE IF NOT EXISTS `tutoring_session` (
+    CREATE TABLE
+    IF NOT EXISTS `tutoring_session`(
         `session_id` INT NOT NULL AUTO_INCREMENT,
         `session_date` DATETIME NOT NULL,
         `student_id` INT NOT NULL,
         `tutor_id` INT NOT NULL,
         PRIMARY KEY (`session_id`),
-		foreign key(`student_id`) references students(student_id),
-        foreign key(`tutor_id`) references tutors(tutor_id)) 
+		foreign key (`student_id`) references students(student_id),
+        foreign key (`tutor_id`) references tutors(tutor_id)) 
         ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-    -- ADD FOREIGN KEY tutor_id and session_id --
+-- ADD FOREIGN KEY tutor_id and session_id --
 
        CREATE TABLE IF NOT EXISTS `tutor_rating` (
         `tutor_rating_id` INT NOT NULL AUTO_INCREMENT,
@@ -176,12 +105,11 @@ CREATE TABLE IF NOT EXISTS 	`tutors` (
         foreign key(`tutor_id`) references tutors(tutor_id),
         foreign key(`session_id`) references student_request(request_id))
 		Engine = InnoDB DEFAULT CHARSET= latin1;
-        
 
-    CREATE TABLE IF NOT EXISTS `rejected_requests` (
-	`request_id` INT NOT NULL,
-    `rejected_by` INT NOT NULL,
-    FOREIGN KEY (`request_id`) REFERENCES student_request(request_id),
-    FOREIGN KEY (`rejected_by`) REFERENCES tutors(tutor_id),
-    PRIMARY KEY (`request_id`, `rejected_by`)
-    );
+        CREATE TABLE IF NOT EXISTS `rejected_requests` (
+        `request_id` INT NOT NULL,
+        `rejected_by` INT NOT NULL,
+        FOREIGN KEY (`request_id`) REFERENCES student_request(request_id),
+        FOREIGN KEY (`rejected_by`) REFERENCES tutors(tutor_id),
+        PRIMARY KEY(`request_id`, `rejected_by`)
+        );

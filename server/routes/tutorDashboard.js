@@ -1,6 +1,11 @@
 const connection = require("../../connection");
 
 module.exports = {
+  completeTutorInfo: (req, res) => {
+    let tutor_id = req.params.id;
+    console.log("SUCCESS");
+  },
+
   submitStudentReview: (req, res) => {
     let getMemberId = "SELECT * FROM student_request WHERE request_id = ?";
     connection.db.query(getMemberId, req.body.session_id, (err, result) => {

@@ -8,8 +8,8 @@
 }
 body {
   font-family: "Mali", cursive;
-  /* background: var(--mainDark) !important;
-  color: var(--mainWhite) !important; */
+  background: var(--mainDark) !important;
+  color: var(--mainWhite) !important;
 }
 
 /* global */
@@ -65,7 +65,7 @@ body {
 }
 
 .container {
-  display: grid | inline-grid;
+  display: grid inline-grid;
 }
 
 #resultsPages {

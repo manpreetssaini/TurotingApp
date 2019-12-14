@@ -24,7 +24,7 @@ module.exports = {
         ", " +
         start_time
     );
-    const studentCityQuery = "SELECT * FROM students WHERE student_id = 2;";
+    const studentCityQuery = "SELECT * FROM students WHERE student_id = ?;";
     connection.db.query(studentCityQuery, student_id, (err, result) => {
       if (err) {
         throw err;

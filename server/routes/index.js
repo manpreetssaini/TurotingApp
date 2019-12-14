@@ -1,4 +1,5 @@
-const router = require("express").Router();
+const express = require("express");
+const router = express.Router();
 const {
   submitTutorReview,
   tutorRating,
@@ -8,6 +9,7 @@ const {
   getStudentProfile
 } = require("./studentDashboard");
 const {
+  completeTutorInfo,
   studentRating,
   submitStudentReview,
   submitEdit,
@@ -36,7 +38,6 @@ module.exports = app => {
   app.post("/submitStudentEdit", submitStudentEdit);
   app.get("/tutorRating/:id/:user_name", tutorRating);
   app.post("/submitTutorReview", submitTutorReview);
-
   app.get("/tutordashboard/:id", getTutorProfile);
   app.post("/acceptRequest", acceptRequest);
   app.post("/rejectRequest", rejectRequest);
@@ -45,16 +46,17 @@ module.exports = app => {
   app.get("/studentRating/:id/:user_name", studentRating);
   app.post("/submitStudentReview", submitStudentReview);
 
+  app.get("/completeTutorInfo/:id", completeTutorInfo);
+
   app.get("/", (req, res) => {
-    res.render("landing");
+    res.render("welcome.ejs");
   });
 
-  app.get("/login", (req, res) => {
-    res.render("login");
-  });
+  // app.get("/login", (req, res) => {
+  //   res.render("login");
+  // });
 
-  app.get("/register", (req, res) => {
-    res.render("register");
-  });
+  // app.get("/register", (req, res) => {
+  //   res.render("register");
+  // });
 };
-// comment
