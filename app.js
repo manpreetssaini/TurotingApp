@@ -8,6 +8,7 @@ const defaultErrorHandler = require("./server/middleware/errorHandler");
 const authenticate = require("./server/middleware/authentication");
 const cookieParser = require("cookie-parser");
 const expressLayouts = require("express-ejs-layouts");
+const moment = require('moment');
 
 require("dotenv").config();
 
@@ -42,6 +43,8 @@ app.use((req, res, next) => {
   res.locals.error = req.flash("error");
   next();
 });
+
+moment().format();
 
 app.use(express.static("public"));
 // app.use(express.static(__dirname + "/public"));
