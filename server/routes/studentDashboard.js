@@ -163,7 +163,7 @@ module.exports = {
                 } else {
                   average_rating = result[0].rating;
                 }
-                console.log(average_rating);
+
                 res.render("studentDashboard.ejs", {
                   student,
                   full_name,

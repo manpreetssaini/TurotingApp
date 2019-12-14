@@ -123,6 +123,7 @@ router.post("/studentregister", (req, res) => {
 });
 
 router.get("/studentlogout", (req, res) => {
+  req.session.user = null;
   req.logout();
   req.flash("success_msg", "You are logged out");
   res.redirect("/users/studentlogin");
@@ -246,6 +247,7 @@ router.post("/tutorregister", (req, res) => {
 });
 
 router.get("/tutorlogout", (req, res) => {
+  req.session.user = null;
   req.logout();
   req.flash("success_msg", "You are logged out");
   res.redirect("/users/tutorlogin");

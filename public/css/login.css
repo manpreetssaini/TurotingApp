@@ -2,7 +2,7 @@ html,
 body {
   background: #efefef;
   padding: 10px;
-  font-family: 'Varela Round';
+  font-family: "Varela Round";
 }
 /*=== 2. Anchor Link ===*/
 a {
@@ -38,7 +38,7 @@ a:hover {
   color: #555555;
   padding: 7px 0;
   font-weight: bold;
-  height:auto;
+  height: auto;
 }
 .login-form-1 .form-control::-webkit-input-placeholder {
   color: #999999;
@@ -172,7 +172,7 @@ label.form-invalid:after {
 [type="checkbox"]:checked + label:before,
 [type="radio"]:not(:checked) + label:before,
 [type="radio"]:checked + label:before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 2px;
@@ -190,7 +190,7 @@ label.form-invalid:after {
 [type="radio"]:checked + label:after {
   position: absolute;
   color: #555555;
-  transition: all .2s;
+  transition: all 0.2s;
 }
 /* checked mark aspect changes */
 [type="checkbox"]:not(:checked) + label:after,
@@ -244,14 +244,14 @@ label:hover:before {
 /* selected mark aspect */
 [type="checkbox"]:not(:checked) + label:after,
 [type="checkbox"]:checked + label:after {
-  content: '✔';
+  content: "✔";
   top: 0;
   left: 2px;
   font-size: 14px;
 }
 [type="radio"]:not(:checked) + label:after,
 [type="radio"]:checked + label:after {
-  content: '\2022';
+  content: "\2022";
   top: 0;
   left: 3px;
   font-size: 30px;
@@ -264,3 +264,101 @@ label:hover:before {
   color: #aaaaaa;
   font-weight: bold;
 }
+
+/* Wilson's CSS */
+/* 
+#homeProfilePic {
+  border-radius: 50%;
+  width: 10%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profileInfo {
+  float: left;
+}
+
+td {
+  padding: 10px 15px 10px 0;
+}
+
+table {
+  margin-bottom: 15px;
+}
+
+#lastLogin {
+  text-align: center;
+}
+
+#bookButton {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#upcomingHeading {
+  text-align: center;
+}
+
+#searchbar {
+  width: 100%;
+  height: 50px;
+}
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  margin-left: 10%;
+  margin-right: 10%;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr 1fr 9fr;
+  justify-items: center;
+}
+
+.fab {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+form input:valid {
+  border: 5px solid green;
+}
+
+.reveal-if-active {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+input[type="radio"]:checked ~ .reveal-if-active {
+  opacity: 1;
+  max-height: 100px;
+  overflow: visible;
+}
+
+#searchbar {
+  width: 500pt;
+}
+
+.hiddenId {
+  visibility: hidden;
+  size: "1";
+}
+
+#currentLocation {
+  font-size: 0.8em;
+}
+
+#city {
+  font-style: italic;
+}
+
+.disabled {
+  text-decoration: none;
+  color: black;
+  pointer-events: none;
+} */

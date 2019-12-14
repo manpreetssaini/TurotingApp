@@ -28,7 +28,7 @@ app.use(
 );
 
 app.set("views", __dirname + "/views");
-app.use(expressLayouts);
+// app.use(expressLayouts);
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -42,7 +42,8 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static("public"));
+// app.use(express.static(__dirname + "/public"));
 app.use(fileUpload());
 app.use(cookieParser());
 app.use(authenticate.parseUser);
