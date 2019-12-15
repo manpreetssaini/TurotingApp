@@ -69,20 +69,20 @@
 </div>
 
 
-<div class="col-lg-6">
+<div class="container">
     <div id="requested_sessions">
         <h3 id="requestedHeading">Requested Sessions</h3>
-        <table>
+        <table class="table">
             <thead>
                 <tr>
-                    <th>Subject</th>
-                    <th>Topic</th>
-                    <th>Description</th>
-                    <th>Start Time </th>
-                    <th> End Time </th>
-                    <th> Accept? </th>
-                    <th> Reject? </th>
-                    <th> Personally Requested? </th>
+                    <th scope="col">Subject</th>
+                    <th scope="col">Topic</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Start Time </th>
+                    <th scope="col"> End Time </th>
+                    <th scope="col"> Accepted </th>
+                    <th scope="col"> Rejected </th>
+                    <th scope="col"> Personally Requested </th>
                 </tr>
             </thead>
             <tbody>
@@ -119,7 +119,7 @@
 
             </tbody>
         </table>
-        <table id="accepted_sessions">
+        <table class="table" id="accepted_sessions">
 
             <h4>Accepted Requests</h4>
             <thead>
@@ -145,7 +145,7 @@
         </table>
 
         <h4>History</h4>
-        <table>
+        <table class="table">
             <thead>
                 <tr>
                     <th>Student</th>
@@ -153,6 +153,7 @@
                     <th>Date</th>
                     <th>Rating</th>
                 </tr>
+
             </thead>
             <tbody>
                 <% pastSessions.forEach((session, index) => { %>
