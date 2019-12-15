@@ -246,6 +246,7 @@ module.exports = {
           user_name: res.user_name,
           speciality: res.speciality,
           location: res.city,
+          image: res.image,
           description: res.description
         };
       });

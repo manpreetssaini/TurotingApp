@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-4">
-            <img src="/img/profile-placeholder.png" id="homeProfilePic" />
+            <img src="<% if (tutor[0].image === null) {%> /img/profile-placeholder.png <%} else { %> <%= tutor[0].image %>  <%}%>" id="homeProfilePic" />
             <h1>
                 <!-- username -->
             </h1>
@@ -42,6 +42,11 @@
                 <tr>
                     <td class="specialtyHeading"> Specialty: </td>
                     <td> <%= tutor[0].speciality %> </td>
+                </tr>
+
+                <tr>
+                  <td class="descriptionHeading"> About Me: </td>
+                  <td> <%= tutor[0].description %> </td>
                 </tr>
 
                 <tr>
