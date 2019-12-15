@@ -1,4 +1,5 @@
 const connection = require("../../connection");
+const moment = require("moment");
 
 module.exports = {
   submitTutorReview: (req, res) => {
@@ -123,11 +124,14 @@ module.exports = {
             subject: res.subject,
             topic: res.topic,
             description: res.description,
-            start_time: res.start_time,
-            end_time: res.end_time,
+            start_time: moment(res.start_time).format("YYYY/MM/DD, HH:mm"),
+            end_time: moment(res.end_time).format("YYYYY/MM/DD, HH:mm"),
             accepted: res.accepted
           };
         });
+        console.log(
+          moment(upcomingSessions[0].start_time).format("YYYY/MM/DD")
+        );
 
         const historyQuery =
           "SELECT * FROM student_request LEFT JOIN tutors ON student_request.tutor_id = tutors.tutor_id LEFT JOIN tutor_rating ON student_request.request_id = tutor_rating.session_id WHERE student_id = ? AND student_request.tutor_id IS NOT NULL AND start_time < NOW();";
@@ -143,11 +147,12 @@ module.exports = {
                 name: res.user_name,
                 session_id: res.request_id,
                 topic: res.topic,
-                date: res.start_time,
+                date: moment(res.start_time).format("YYYY-MM-DD"),
                 rating: res.rating,
                 tutor_id: res.tutor_id
               };
             });
+
             const getRatingQuery =
               "SELECT AVG(rating) AS 'rating' FROM student_rating WHERE student_id = ? ";
             connection.db.query(
