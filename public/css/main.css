@@ -64,6 +64,9 @@ body {
   border-radius: 0px;
 }
 
+.editProfilePhoto {
+  border-radius: 50px;
+}
 .container {
   display: grid inline-grid;
 }
@@ -79,6 +82,16 @@ form {
 #homeProfilePic {
   border-radius: 50%;
   width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  float: left;
+  padding-bottom: 20px;
+}
+
+#editProfilePic {
+  border-radius: 90%;
+  width: 40%;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -189,4 +202,8 @@ input[type="radio"]:checked ~ .reveal-if-active {
   height:30px;
   float:bottom;
   width:78%;
+}
+
+.editPageTitle{
+  padding-top: 20px;
 }
