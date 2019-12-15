@@ -41,7 +41,7 @@ module.exports = {
   },
   submitEdit: (req, res) => {
     const updateQuery =
-      "UPDATE tutors SET `first_name`= ?, `last_name` = ?, `city`=?, `speciality`=? WHERE (`tutor_id` = ?);";
+      "UPDATE tutors SET `first_name`= ?, `last_name` = ?, `city`=?, `speciality`=?, `image`=?, `description`=? WHERE (`tutor_id` = ?);";
 
     connection.db.query(
       updateQuery,
@@ -50,23 +50,11 @@ module.exports = {
         req.body.last_name,
         req.body.location,
         req.body.specialty,
+        req.body.image,
+        req.body.description,
         req.body.tutorID
       ],
       (err, result) => {
-        console.log(
-          req.body.username +
-            " " +
-            req.body.first_name +
-            " " +
-            req.body.last_name +
-            " " +
-            req.body.location +
-            " " +
-            req.body.specialty +
-            " " +
-            req.body.tutorID
-        );
-        console.log(updateQuery);
         if (err) {
           throw err;
         }

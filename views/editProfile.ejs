@@ -40,7 +40,7 @@
       <td class="specialtyHeading">Specialty:</td>
       <td> <select name="specialty">
           <option value="math"> Math </option>
-          <option value="computer_studies"> Web Development </option>
+          <option value="computer_studies"> Computer Studies </option>
           <option value="science"> Science </option>
           <option value="English"> English </option>
         </select>
@@ -51,6 +51,13 @@
       <td id="currentLocation"> Your current specialty is <span id="city"> <%=tutor[0].speciality %> </span> </td>
     </tr>
 
+    <tr>
+      <td id="editDescription"><input type="text" name="description" placeholder="Write a bit about yourself here" value=""> </input> </td> 
+    </tr>
+
+    <tr>
+      <td id="editPicture"><input type="test" name="image" placeholder="Add a link to your photo here" value=""> </input> </td>
+    </tr>
   </table>
   <button type="submit" class="btn btn-success"> Submit </button>
 </form>

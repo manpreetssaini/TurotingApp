@@ -37,7 +37,7 @@ module.exports = {
 
   submitStudentEdit: (req, res) => {
     const updateQuery =
-      "UPDATE students SET `first_name`= ?, `last_name` = ?, `city`=? WHERE (`student_id` = ?);";
+      "UPDATE students SET `first_name`= ?, `last_name` = ?, `city`=?, `image`=? WHERE (`student_id` = ?);";
 
     connection.db.query(
       updateQuery,
@@ -45,6 +45,7 @@ module.exports = {
         req.body.first_name,
         req.body.last_name,
         req.body.location,
+        req.body.image,
         req.body.studentID
       ],
       (err, result) => {
