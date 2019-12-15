@@ -129,9 +129,6 @@ module.exports = {
             accepted: res.accepted
           };
         });
-        console.log(
-          moment(upcomingSessions[0].start_time).format("YYYY/MM/DD")
-        );
 
         const historyQuery =
           "SELECT * FROM student_request LEFT JOIN tutors ON student_request.tutor_id = tutors.tutor_id LEFT JOIN tutor_rating ON student_request.request_id = tutor_rating.session_id WHERE student_id = ? AND student_request.tutor_id IS NOT NULL AND start_time < NOW();";
