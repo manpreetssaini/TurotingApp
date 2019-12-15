@@ -3,7 +3,7 @@
 <div class="container-fluid">
   <div class="row" id="resultsPages">
     <div class="col-lg-12">
-      <h1>Showing <%= (currentPage - 1) * 10 + 1%> - <%= (currentPage - 1) * 10 + 10%> of <%= tutors.length %> results
+      <h1>Showing <% if (tutors.length <10) {%> <%=tutors.length%> <%} else { %> <%= (currentPage - 1) * 10 + 1%> - <%= (currentPage - 1) * 10 + 10%> <%}%> of <%= tutors.length %> results
         for <%= searchCriteria %></h1>
     </div>
     <div class="col-lg-12">
