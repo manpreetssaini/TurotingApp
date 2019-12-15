@@ -75,7 +75,7 @@
 
     <% tutorsPage.forEach((tutor, index) => { %>
     <div class="card">
-      <img src="\img\profile-placeholder.png" class="card-img-top" />
+      <img src="<%= tutor.image %>" class="card-img-top" />
       <div class="card-body">
         <p>Result #: <%= (currentPage - 1) * 10 + index + 1 %> </p>
         <p><%= tutor.user_name %></p>
