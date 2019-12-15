@@ -128,6 +128,8 @@ module.exports = {
         throw err;
       }
       let tutor = result;
+      let tutorDOB = moment(result[0].dob).format("YYYY/MM/DD");
+
       let full_name = tutor[0].first_name + " " + tutor[0].last_name;
       const upcomingQuery =
         "SELECT * FROM student_request WHERE subject=? AND accepted=0 AND (city=? OR tutor_id = ?) AND start_time >= NOW() AND student_request.request_id NOT IN (SELECT request_id FROM rejected_requests WHERE rejected_by = ?) ORDER BY request_id DESC;";
@@ -227,6 +229,7 @@ module.exports = {
                     }
                     res.render("tutorDashboard.ejs", {
                       tutor,
+                      tutorDOB,
                       tutor_id,
                       full_name,
                       requestedSessions,

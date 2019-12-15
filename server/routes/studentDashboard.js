@@ -108,7 +108,7 @@ module.exports = {
       }
 
       let student = result;
-
+      let studentDOB = moment(student[0].dob).format("YYYY/MM/DD");
       let full_name = student[0].first_name + " " + student[0].last_name;
 
       const upcomingQuery =
@@ -171,6 +171,7 @@ module.exports = {
 
                 res.render("studentDashboard.ejs", {
                   student,
+                  studentDOB,
                   full_name,
                   upcomingSessions,
                   pastSessions,
