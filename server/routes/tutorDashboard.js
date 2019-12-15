@@ -1,4 +1,5 @@
 const connection = require("../../connection");
+const moment = require("moment");
 
 module.exports = {
   completeTutorInfo: (req, res) => {
@@ -54,16 +55,16 @@ module.exports = {
       (err, result) => {
         console.log(
           req.body.username +
-          " " +
-          req.body.first_name +
-          " " +
-          req.body.last_name +
-          " " +
-          req.body.location +
-          " " +
-          req.body.specialty +
-          " " +
-          req.body.tutorID
+            " " +
+            req.body.first_name +
+            " " +
+            req.body.last_name +
+            " " +
+            req.body.location +
+            " " +
+            req.body.specialty +
+            " " +
+            req.body.tutorID
         );
         console.log(updateQuery);
         if (err) {
@@ -150,8 +151,8 @@ module.exports = {
               subject: res.subject,
               topic: res.topic,
               description: res.description,
-              start_time: res.start_time,
-              end_time: res.end_time
+              start_time: moment(res.start_time).format("YYYY/MM/DD, HH:mm"),
+              end_time: moment(res.end_time).format("YYYY/MM/DD, HH:mm")
             };
           });
 
@@ -181,7 +182,7 @@ module.exports = {
                 subject: res.subject,
                 topic: res.topic,
                 description: res.description,
-                start_time: res.start_time,
+                start_time: moment(res.start_time).format("YYYY/MM/DD, HH:mm"),
                 request_id: res.request_id
               };
             });
@@ -200,7 +201,7 @@ module.exports = {
                     name: res.user_name,
                     session_id: res.request_id,
                     topic: res.topic,
-                    date: res.start_time,
+                    date: moment(res.start_time).format("YYYY/MM/DD"),
                     rating: res.rating,
                     student_id: res.student_id
                   };
