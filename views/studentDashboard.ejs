@@ -4,7 +4,8 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-4">
-      <img src="/img/profile-placeholder.png" id="homeProfilePic" />
+      <% console.log(student[0].image) %>
+      <img src="<% if (student[0].image === null) {%> /img/profile-placeholder.png <%} else { %> https://vignette.wikia.nocookie.net/rickandmorty/images/a/a6/Rick_Sanchez.png/revision/latest?cb=20160923150728   <%}%>" id="homeProfilePic" />
       <h1>
         <!-- username -->
       </h1>
