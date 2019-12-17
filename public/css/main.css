@@ -212,11 +212,12 @@ input[type="radio"]:checked ~ .reveal-if-active {
   padding-top: 20px;
 }
 
-/* 
+
 .tutor_search{
   padding: 5px 5px 5px 5px;
-} */
+} 
 
-/* .search_criteria{
+.search_criteria{
   text-align: left;
-} */
+}
+

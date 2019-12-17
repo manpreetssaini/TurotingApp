@@ -11,40 +11,40 @@
       <p id="lastLogin">
         <!-- last_login -->
       </p>
-      <h2>Student Profile</h2>
+      <h2><%= student[0].user_name%></h2>
     </div>
 
 
     <!-- username -->
     <div>
       <table>
-        <tr class="student_id">
-        <tr>
-          <td class="profileHeading"> Username:</td>
-          <td style="vertical-align: center;"> <%= student[0].user_name%></td>
-        </tr>
+        <tr class=" student_id">
+      <tr>
+        <td class="profileHeading"> Username:</td>
+        <td style="vertical-align: center;"> <%= student[0].user_name%></td>
+      </tr>
 
-        <!-- full_name -->
-        <tr>
-          <td class="profileHeading">Name:</td>
-          <td> <%= full_name %></td>
-        </tr>
-        <!-- DOB -->
-        <tr>
-          <td class="profileHeading">Date of Birth:</td>
-          <td> <%= studentDOB %></td>
-        </tr>
+      <!-- full_name -->
+      <tr>
+        <td class="profileHeading">Name:</td>
+        <td> <%= full_name %></td>
+      </tr>
+      <!-- DOB -->
+      <tr>
+        <td class="profileHeading">Date of Birth:</td>
+        <td> <%= studentDOB %></td>
+      </tr>
 
-        <!-- location -->
-        <tr>
-          <td class="profileHeading">Location:</td>
-          <td><%= student[0].city %></td>
-        </tr>
+      <!-- location -->
+      <tr>
+        <td class="profileHeading">Location:</td>
+        <td><%= student[0].city %></td>
+      </tr>
 
-        <tr>
-          <td class="profileHeading" id="studentAverageRating">Average Rating:</td>
-          <td><%= average_rating%></td>
-        </tr>
+      <tr>
+        <td class="profileHeading" id="studentAverageRating">Average Rating:</td>
+        <td><%= average_rating%></td>
+      </tr>
       </table>
     </div>
 
@@ -147,7 +147,7 @@
         <%  }); %>
       </tbody>
     </table>
-    <table id="history">
+    <table class="table" id="history">
 
       <h4>History</h4>
       <thead>

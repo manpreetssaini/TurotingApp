@@ -11,50 +11,50 @@
             <p id="lastLogin">
                 <!-- last_login -->
             </p>
-            <h2>Tutor Profile</h2>
+            <h2><%= tutor[0].user_name%></h2>
         </div>
 
         <!-- username -->
         <div>
             <table>
                 <tr>
-                    <td class="profileHeading"> Username:</td>
-                    <td style="vertical-align: center;"> <%= tutor[0].user_name%></td>
-                </tr>
+                    <td class=" profileHeading"> Username:</td>
+            <td style="vertical-align: center;"> <%= tutor[0].user_name%></td>
+            </tr>
 
-                <!-- full_name -->
-                <tr>
-                    <td class="profileHeading">Name:</td>
-                    <td> <%= full_name %></td>
-                </tr>
-                <!-- DOB -->
-                <tr>
-                    <td class="profileHeading">Date of Birth:</td>
-                    <td> <%= tutorDOB %></td>
-                </tr>
+            <!-- full_name -->
+            <tr>
+                <td class="profileHeading">Name:</td>
+                <td> <%= full_name %></td>
+            </tr>
+            <!-- DOB -->
+            <tr>
+                <td class="profileHeading">Date of Birth:</td>
+                <td> <%= tutorDOB %></td>
+            </tr>
 
-                <tr>
-                    <!-- location -->
-                    <td class="profileHeading">Location:</td>
-                    <td><%= tutor[0].city %></td>
-                </tr>
+            <tr>
+                <!-- location -->
+                <td class="profileHeading">Location:</td>
+                <td><%= tutor[0].city %></td>
+            </tr>
 
-                <tr>
-                    <td class="specialtyHeading"> Specialty: </td>
-                    <td> <%= tutor[0].speciality %> </td>
-                </tr>
+            <tr>
+                <td class="specialtyHeading"> Specialty: </td>
+                <td> <%= tutor[0].speciality %> </td>
+            </tr>
 
-                <tr>
-                  <td class="descriptionHeading"> About Me: </td>
-                  <td> <%= tutor[0].description %> </td>
-                </tr>
+            <tr>
+                <td class="descriptionHeading"> About Me: </td>
+                <td> <%= tutor[0].description %> </td>
+            </tr>
 
-                <tr>
-                    <div>
-                        <td class="profileHeading" id="tutorAverageRating">Average Rating:</td>
-                        <td><%= average_rating%></td>
-                    </div>
-                </tr>
+            <tr>
+                <div>
+                    <td class="profileHeading" id="tutorAverageRating">Average Rating:</td>
+                    <td><%= average_rating%></td>
+                </div>
+            </tr>
             </table>
         </div>
 
