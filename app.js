@@ -1,89 +1,65 @@
-const express = require ('express');
-const session = require('express-session');
-const routes = require('./server/routes');
-const bodyParser = require('body-parser');
-const mysql = require('mysql');
-const path = require('path');
-const fileUpload = require('express-fileupload');
-const defaultErrorHandler = require('./server/middleware/errorHandler');
-const authenticate = require('./server/middleware/authentication');
-require('dotenv').config();
+/* eslint-disable no-undef */
+const express = require("express");
+const session = require("express-session");
+const bodyParser = require("body-parser");
+const fileUpload = require("express-fileupload");
+const flash = require("connect-flash");
+const defaultErrorHandler = require("./server/middleware/errorHandler");
+const authenticate = require("./server/middleware/authentication");
+const cookieParser = require("cookie-parser");
+const expressLayouts = require("express-ejs-layouts");
+const moment = require('moment');
+
+require("dotenv").config();
 
 const app = express();
 
+const PORT = process.env.PORT || 4000;
 
-const port = 3000;
-
-const db = mysql.createConnection({
-  // Replace with user-appropriate values
-  host: 'localhost',
-  user: 'root',
-  password: 'password',
-  database: 'tutors_db',
-  insecureAuth: true
-});
-
-db.connect((err) => {
-  if(!err) {
-    console.log("Connected");
-  }
-  else {
-    throw(err)
-  }
-});
-
-app.use(session({
+app.use(
+  session({
     secret: process.env.SESSION_SECRET,
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     cookie: {
-        secure:false,
-        maxAge: 7200000,
-        httpOnly: true,
-    },
-}));
+      secure: false,
+      maxAge: 7200000,
+      httpOnly: true
+    }
+  })
+);
 
-
-app.set("port", process.env.port || port);
 app.set("views", __dirname + "/views");
+app.use(expressLayouts);
 app.set("view engine", "ejs");
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use('/public', express.static(path.join(__dirname, 'public')))
+app.use(flash());
+
+//global vars
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash("success_msg");
+  res.locals.error_msg = req.flash("error_msg");
+  res.locals.error = req.flash("error");
+  next();
+});
+
+moment().format();
+
+app.use(express.static("public"));
+// app.use(express.static(__dirname + "/public"));
 app.use(fileUpload());
+app.use(cookieParser());
 app.use(authenticate.parseUser);
 app.use(defaultErrorHandler);
-app.use(routes);
 
-app.get("/", (req, res) => {
-    res.render("landing");
-  });
-  
-  app.get("/register", (req, res) => {
-    res.render("register");
-  });
-  
-  app.get("/login", (req, res) => {
-    res.render("login");
-  });
-  
-  app.get("/register", (req, res) => {
-    res.render("register");
-  });
-  
-  app.get("/results", (req, res) => {
-    res.render("results");
-  });
-  
-  app.get("/search", (req, res) => {
-    res.render("search");
-  });
-  
-  app.get("/home", (req, res) => {
-    res.render("home");
-  });
-  
-  app.listen(port, () => {
-      console.log(`Server running on port: ${port}`);
-  });
-  
+const routes = require("./server/routes/index")(app);
+
+// app.use('/', require('./server/routes/index'));
+app.use("/users", require("./server/routes/users"));
+
+app.listen(PORT, () => {
+  console.log(`Server running on port: ${PORT}`);
+});
+
+module.exports = { app: app };

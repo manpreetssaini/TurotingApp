@@ -51,10 +51,9 @@ body {
 }
 
 .card {
-  width: 8rem;
+  width: 7rem;
   border-radius: 0px;
-  background-color: #242325;
-  padding: 0;
+  margin: 0.5em;
 }
 
 .card:hover {
@@ -65,13 +64,16 @@ body {
   border-radius: 0px;
 }
 
+.editProfilePhoto {
+  border-radius: 50px;
+}
 .container {
-  display: grid | inline-grid;
+  display: grid inline-grid;
 }
 
-#resultsPages {
+/* #resultsPages {
   vertical-align: bottom;
-}
+} */
 
 form {
   margin: 1rem;
@@ -79,18 +81,26 @@ form {
 
 #homeProfilePic {
   border-radius: 50%;
+  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  float: left;
+  padding-bottom: 20px;
+}
+
+#editProfilePic {
+  border-radius: 90%;
   width: 40%;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  float: left;
+  padding-bottom: 20px;
 }
 
 .profileInfo {
   float: left;
-}
-
-.profileHeading {
-  font-size: 1.5rem;
 }
 
 td {
@@ -116,8 +126,9 @@ table {
 }
 
 #searchbar {
-  width: 100%;
+  width: 50%;
   height: 50px;
+  text-align: center;
 }
 
 footer {
@@ -137,3 +148,76 @@ footer {
   padding-left: 20px;
   padding-right: 20px;
 }
+
+form input:valid {
+  border: 5px solid green;
+}
+
+.reveal-if-active {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+
+input[type="radio"]:checked ~ .reveal-if-active {
+  opacity: 1;
+  max-height: 100px;
+  overflow: visible;
+}
+
+#searchbar {
+  width: 240pt;
+}
+
+.hiddenId {
+  visibility: hidden;
+  size: "1";
+}
+
+#currentLocation {
+  font-size: 0.8em;
+}
+
+#city {
+  font-style: italic;
+}
+
+.disabled {
+  text-decoration: none;
+  color: black;
+  pointer-events: none;
+}
+
+/* navbar */
+
+#home{
+  width: 100%;
+  padding: 5px 5px;
+}
+.footer {
+  position: relative; 
+  bottom:0;
+  padding-left: 30px;
+  padding-right: 30px;
+  height:30px;
+  float:bottom;
+  width:78%;
+}
+
+.editPageTitle{
+  padding-top: 20px;
+}
+
+.searchTitle{
+  padding-top: 20px;
+}
+
+
+.tutor_search{
+  padding: 5px 5px 5px 5px;
+} 
+
+.search_criteria{
+  text-align: left;
+}
+

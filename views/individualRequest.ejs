@@ -1,0 +1,28 @@
+<% include partials/other_header.ejs %>
+<h1>Submit an individual request for  <%=full_name %></h1>
+<h1> Subject: <%= subject %> </h1>
+
+<form method="POST" action="/submitIndividualRequest">
+        <div>
+            <input class="hiddenId" type="radio" name="tutorID" class="form-control" value="<%= tutor_id%>" checked> </input>
+        </div>
+        <div>
+            <input class="hiddenId" type="radio" name="studentID" class="form-control" value="<%= student_id%>" checked> </input>
+        </div>
+        <div>
+            <input class="hiddenId" type="radio" name="subject" class="form-control" value="<%= subject%>" checked> </input>
+        </div>
+
+    <p> State the topic you would like to cover. </p>
+    <input type="text" name="topic" placeholder="Write your topic here" value=""> </input>
+
+    <p> Write a message for the tutor (optional) </p>
+    <input type="text" name="message" placeholder="Write your message here" value=""> </input>
+    
+    <p> Select a time and date that you would like tutoring: </p>
+    <input type="datetime-local" name="date" placeholder="Date" required> </input>
+    <div id="datewarn"></div> 
+    <button type="submit" class="btn btn-primary"> Submit </button>
+</form>
+
+<% include partials/footer.ejs %>

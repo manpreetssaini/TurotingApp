@@ -1,0 +1,52 @@
+<% include partials/student_header.ejs %>
+<div class="container">
+  <div class="editPageTitle">
+    <h1>This is the edit profile page for student# <%=student_id %></h1>
+  </div>
+  <form method="POST" action="/submitStudentEdit">
+    <input class="hiddenId" type="radio" checked='true' name="studentID" value="<%= student[0].student_id %>"> </input>
+    <table>
+      <tr>
+        <td class="profilePhoto"> Profile Photo </td>
+        <td> <img src="/img/profile-placeholder.png" id="editProfilePic" /></td>
+      </tr>
+
+      <tr>
+        <td class="profileHeading">First Name</td>
+        <td><input type="text" name="first_name" value="<%= student[0].first_name%>"> </input></td>
+      </tr>
+
+      <tr>
+        <td class="profileHeading">Last Name</td>
+        <td><input type="text" name="last_name" value="<%= student[0].last_name%>"> </input></td>
+      </tr>
+
+
+      <tr>
+        <!-- location -->
+        <td class="profileHeading">Location:</td>
+
+        <td> <select name="location">
+            <option value="Downtown Toronto"> Downtown Toronto </option>
+            <option value="North York"> North York </option>
+            <option value="Scarborough"> Scarborough </option>
+            <option value="Etobicoke"> Etobicoke </option>
+            <option value="Peel Region"> Peel Region </option>
+            <option value="York Region"> York Region </option>
+            <option value="Durham Region"> Durham Region </option>
+          </select>
+        </td>
+      </tr>
+
+      <tr>
+        <td id="currentLocation"> Your current location is <span id="city"> <%=student[0].city %> </span> </td>
+      </tr>
+
+      <tr>
+            <td id="editPicture"><input type="test" name="image" placeholder="Add a link to your photo here" value=""> </input> </td>
+    </tr>
+    </table>
+    <button type="submit" class="btn btn-success"> Submit </button>
+  </form>
+</div>
+<% include partials/footer.ejs %>
